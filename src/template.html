@@ -10,16 +10,62 @@
 
     <!-- Page layout ideas: -->
 
+    <!-- Create a small header for user info/settings/etc -->
+
+        <!-- The header will include a settings wheel, profile pic, etc -->
+
+
     <!-- Create a sidebar with several options(similar to dashboard project) -->
 
-        <!-- Have a "my tasks" section to display all tasks -->
-        <!-- At the top we'll have an addTask button -->
+        <!-- Have a "my projects" section to display all projects -->
+            <!-- (Add tab switching logic in one module to display tasks in that project) -->
+        
         <!-- Below that we'll have ways to sort/display tasks based on input -->
+        <!-- At the top we'll have an addTask button -->
         <!-- First section will be "today" to display current tasks today -->
         <!-- We'll also add a "completed" section for any tasks completed -->
         <!-- We'll have a "by date" section like "upcoming" on todoist -->
 
         <!-- Have a "my projects section to display current projects" -->
         <!-- Append all projects created to this section below add button -->
+
+
+    <!-- Create a main section to cover rest of page -->
+
+        <!-- In main section we will load different content based on whats clicked on sidebar -->
+        <!-- Each to-do item will have a title, description, dueDate, priority, a checkBtn, editBtn, deleteBtn -->
+        <!--  -->
+
+        <header id="header">
+            <!-- Add a sort feature here (select, option) -->
+            <i class="fa-solid fa-bell"></i>
+            <button id="themeSwitcher">Light/Dark</button>
+            <h2>(Gear Wheel Icon) Settings</h2>
+            <img src="" alt="Profile Picture" id="profilePicture">
+        </header>
+
+        <aside id="sidebar">
+            <div id="taskSection">
+                <h2>(+ icon) Add task</h2>
+                <h2>(Magnifying glass icon) Search</h2>
+                <h2>(checkmark icon) Completed</h2>
+                <h2>(icon) All Tasks</h2>
+            </div>
+            <div id="projectSection">
+
+                <h1>My Projects</h1>
+                <!-- Projects will get appended here when created -->
+            </div>
+            <div id="serviceSection">
+                <h2>(Gear wheel icon) Settings</h2>
+                <h2>(Circled Question Mark icon) Help</h2>
+            </div>
+        </aside>
+
+        <main id="mainContent">
+            <!-- Largely empty, will have content appended to it as it's created -->
+        </main>
+
+
 </body>
 </html>
