@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To-Do List</title>
+    <script src="https://kit.fontawesome.com/00250d9010.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <!-- Write brainstorming ideas and pseudocode here::: -->
@@ -36,35 +37,59 @@
         <!-- Each to-do item will have a title, description, dueDate, priority, a checkBtn, editBtn, deleteBtn -->
         <!--  -->
 
-        <header id="header">
-            <!-- Add a sort feature here (select, option) -->
-            <i class="fa-solid fa-bell"></i>
-            <button id="themeSwitcher">Light/Dark</button>
-            <h2>(Gear Wheel Icon) Settings</h2>
-            <!-- <img src="" alt="Profile Picture" id="profilePicture"> -->
-        </header>
+            <header id="header">
+                <!-- Add a sort feature here (select, option) -->
+                <i class="fa-solid fa-bell"></i>
+                <i class="fa-solid fa-gear"></i>
+                <button id="themeSwitcher">Light/Dark</button>
+                <!-- <img src="" alt="Profile Picture" id="profilePicture"> -->
+            </header>
 
-        <aside id="sidebar">
-            <div id="taskSection">
-                <h2>(+ icon) Add task</h2>
-                <h2>(Magnifying glass icon) Search</h2>
-                <h2>(checkmark icon) Completed</h2>
-                <h2>(icon) All Tasks</h2>
-            </div>
-            <div id="projectSection">
+    
+            <aside id="sidebar">
 
-                <h1>My Projects</h1>
-                <!-- Projects will get appended here when created -->
-            </div>
-            <div id="serviceSection">
-                <h2>(Gear wheel icon) Settings</h2>
-                <h2>(Circled Question Mark icon) Help</h2>
-            </div>
-        </aside>
+                <div id="taskSection">
+                    <button class="sidebar-btn" id="addTaskBtn">
+                        <i class="fa-solid fa-circle-plus"></i>
+                        <span>Add task</span>
+                    </button>
 
-        <main id="mainContent">
-            <!-- Largely empty, will have content appended to it as it's created -->
-        </main>
+                    <button class="sidebar-btn" id="searchBtn">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <span>Search</span>
+                    </button>
+
+                    <button class="sidebar-btn" id="completedBtn">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <span>Completed</span>
+                    </button>
+
+                    <button class="sidebar-btn" id="allTasksBtn">
+                        <i class="fa-solid fa-list"></i>
+                        <span>All Tasks</span>
+                    </button>
+                </div>
+
+                <div id="projectSection">
+                    <h2>My Projects</h2>
+                    <div id="projectsList">
+                        <!-- Projects will get appended here when created -->
+                    </div>
+                </div>
+                
+                <div id="serviceSection">
+                    <h2><i class="fa-solid fa-gear"></i> Settings</h2>
+                    <h2><i class="fa-solid fa-circle-question"></i> Help</h2>
+                </div>
+
+            </aside>
+    
+
+            <main id="main">
+                <p>Main Section</p>
+                <!-- include default message saying no tasks + add task button -->
+                <!-- Largely empty, will have content appended to it as it's created -->
+            </main>
 
 
 </body>
