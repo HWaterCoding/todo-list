@@ -104,6 +104,11 @@ body {
     gap: clamp(1rem, 20px, 1.5rem);
 }
 
+#addProjects{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 
 #serviceSection{
     justify-content: flex-end;
@@ -138,6 +143,19 @@ body {
 
 #main{
     background-color: rgb(255, 255, 255);
-    /* display: grid; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
+#defaultMessageDiv{
+    background: var(--light-pink-theme);
+    
+     
+}
+
+#defaultMessageDiv button{
+    display: flex;
+    align-items: center;
+}

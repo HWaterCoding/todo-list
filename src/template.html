@@ -7,14 +7,6 @@
     <script src="https://kit.fontawesome.com/00250d9010.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <!-- Write brainstorming ideas and pseudocode here::: -->
-
-    <!-- Page layout ideas: -->
-
-    <!-- Create a small header for user info/settings/etc -->
-
-        <!-- The header will include a settings wheel, profile pic, etc -->
-
 
     <!-- Create a sidebar with several options(similar to dashboard project) -->
 
@@ -62,6 +54,11 @@
                         <i class="fa-solid fa-circle-plus"></i>
                         <span>Add task</span>
                     </button>
+                    
+                    <button class="sidebar-btn" id="myTasksBtn">
+                        <i class="fa-solid fa-list"></i>
+                        <span>My Tasks</span>
+                    </button>
 
                     <button class="sidebar-btn" id="searchBtn">
                         <i class="fa-solid fa-magnifying-glass"></i>
@@ -72,15 +69,15 @@
                         <i class="fa-solid fa-circle-check"></i>
                         <span>Completed</span>
                     </button>
-
-                    <button class="sidebar-btn" id="allTasksBtn">
-                        <i class="fa-solid fa-list"></i>
-                        <span>All Tasks</span>
-                    </button>
                 </div>
 
                 <div id="projectSection">
-                    <h2>My Projects</h2>
+                    <div id="addProjects">
+                        <h2>My Projects</h2>
+                        <button class="sidebar-btn" id="addProjectBtn">
+                            <i class="fa-solid fa-circle-plus"></i>
+                        </button>
+                    </div>
                     <div id="projectsList">
                         <!-- Projects will get appended here when created -->
                     </div>
@@ -101,7 +98,6 @@
     
 
             <main id="main">
-                <p>Main Section</p>
                 <!-- include default message saying no tasks + add task button -->
                 <!-- Largely empty, will have content appended to it as it's created -->
             </main>

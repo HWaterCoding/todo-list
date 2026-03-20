@@ -3,6 +3,9 @@ import "./styles.css";
 
 import Task from "./task.js";
 import TaskManager from "./task-manager.js";
+import { renderController } from "./DOM-creation-modules/display-tasks.js";
+
+renderController([]);
 
 const manager = new TaskManager();
 
