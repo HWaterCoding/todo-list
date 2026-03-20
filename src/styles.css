@@ -149,6 +149,7 @@ body {
     align-items: center;
 }
 
+/* Main by default */
 #defaultMessageDiv{
     background: var(--light-pink-theme);
     
@@ -159,3 +160,39 @@ body {
     display: flex;
     align-items: center;
 }
+
+/* Create Task Form */
+#formModal{
+    background: var(--light-pink-theme);
+    padding: clamp(1rem, 20px, 1.5rem);
+    width: 60%;
+    max-width: 100%;
+    border: 1px var(--salmon-theme) solid;
+    border-radius: 15px;
+}
+
+#form{
+
+}
+
+#formBox1{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+#formBox1 input{
+    all: unset;
+}
+
+#selectionBox{
+    display: flex;
+}
+
+#formBox2{
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+/* style buttons for form */
