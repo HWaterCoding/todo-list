@@ -14,3 +14,4 @@ window.Task = Task;
 window.manager = manager;
 
 createTaskForm();
+

@@ -1,4 +1,4 @@
-export default function createTaskForm(){
+export default function createTaskForm(projects){
 
     const main = document.getElementById("main");
 
@@ -51,7 +51,7 @@ export default function createTaskForm(){
 
     //Make a project selector drop-down list here
     const projectSelector = document.createElement("select");
-    //need to loop through all available projects somehow here and create an option for them
+    //Grab projects from project-manager module .allTasks and loop through to create options
 
     const cancelTaskBtn = document.createElement("button");
     cancelTaskBtn.textContent = "Cancel";

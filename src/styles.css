@@ -145,26 +145,61 @@ body {
     background-color: rgb(255, 255, 255);
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
+    padding: clamp(1rem, 20px, 1.5rem);
+    /* Will need to re-apply gap here as well */
 }
 
-/* Main by default */
+
+/* Default Main Section */
 #defaultMessageDiv{
     background: var(--light-pink-theme);
-    
-     
+    display: flex;
+    flex-direction: column;
+    gap: clamp(.5rem, 10px, 1rem);
+    text-align: center;
+    padding: 20px;
+}
+
+#defaultButtonsContainer{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
 }
 
 #defaultMessageDiv button{
     display: flex;
     align-items: center;
+    gap: 5px;
+    font-size: clamp(1rem, 20px, 1.5rem);
+    border: none;
+    border-radius: 10px;
+    padding: 8px;
+    cursor: pointer;
 }
+
+#defaultAddProjectBtn{
+    background-color: rgb(15, 202, 15);
+}
+
+#defaultAddProjectBtn:hover{
+    background-color: rgb(17, 167, 17);
+}
+
+#defaultAddTaskBtn{
+    background: var(--salmon-theme);
+}
+
+#defaultAddTaskBtn:hover{
+    background-color: salmon;
+}
+
 
 /* Create Task Form */
 #formModal{
     background: var(--light-pink-theme);
-    padding: clamp(1rem, 20px, 1.5rem);
+    padding: clamp(1rem, 20px, 1.5rem) clamp(1rem, 20px, 1.5rem) 0 clamp(1rem, 20px, 1.5rem);
     width: 60%;
     max-width: 100%;
     border: 1px var(--salmon-theme) solid;
@@ -172,13 +207,15 @@ body {
 }
 
 #form{
-
+    
 }
 
 #formBox1{
     display: flex;
     flex-direction: column;
     gap: 5px;
+    border-bottom: 1px solid var(--salmon-theme);
+    padding: 0 5px 10px 5px;
 }
 
 #formBox1 input{
@@ -193,6 +230,7 @@ body {
     display: flex;
     justify-content: flex-end;
     gap: 10px;
+    padding: 10px 5px 5px 5px;
 }
 
 /* style buttons for form */

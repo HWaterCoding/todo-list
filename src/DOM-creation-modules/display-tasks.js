@@ -1,35 +1,38 @@
 //renderController to be exported and run, renderEmptyState and renderTaskList depending on data state
-
 function renderEmptyState(main){
     const defaultMessageDiv = document.createElement("div");
     defaultMessageDiv.id = "defaultMessageDiv";
     
     const defaultMessageH3 = document.createElement("h3");
-    defaultMessageH3.textContent = "You don't have any tasks yet.";
+    defaultMessageH3.textContent = "You don't have any tasks yet!";
+
+    const defaultMessageh4 = document.createElement("h4");
+    defaultMessageh4.textContent = "Click below to add a task or project.";
+
+    const defaultButtonsContainer = document.createElement("div");
+    defaultButtonsContainer.id = "defaultButtonsContainer";
 
     const addTaskBtn = document.createElement("button");
     addTaskBtn.id = "defaultAddTaskBtn";
     const addTaskIcon = document.createElement("i");
     addTaskIcon.classList.add("fa-solid", "fa-plus");
-    addTaskBtn.textContent = "Add Tasks";
-    addTaskBtn.append(addTaskIcon);
+    addTaskBtn.append(addTaskIcon, "Add Tasks");
 
     const addProjectBtn = document.createElement("button");
     addProjectBtn.id = "defaultAddProjectBtn";
     const addProjectIcon = document.createElement("i");
     addProjectIcon.classList.add("fa-solid", "fa-plus");
-    addProjectBtn.textContent = "Add Projects";
-    addProjectBtn.append(addProjectIcon);
+    addProjectBtn.append(addProjectIcon, "Add Projects");
 
-    defaultMessageDiv.append(defaultMessageH3, addTaskBtn, addProjectBtn);
+    defaultButtonsContainer.append(addTaskBtn, addProjectBtn)
+
+    defaultMessageDiv.append(defaultMessageH3, defaultMessageh4, defaultButtonsContainer);
     main.appendChild(defaultMessageDiv);
 }
-
 
 function renderTaskList(main, tasks){
     // use forEach to go through each task and render information to list 
 }
-
 
 export function renderController(tasks){
     const main = document.getElementById("main");
@@ -39,5 +42,4 @@ export function renderController(tasks){
     } else{
         renderTaskList(main, tasks);
     }
-
 }
