@@ -1,4 +1,4 @@
-import TaskManager from "./task-manager.js";
+import TaskManager from "./app-manager.js";
 import createTaskForm from "./DOM-creation-modules/task-form.js";
 import Task from "./task.js";
 
