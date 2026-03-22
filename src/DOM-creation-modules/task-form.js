@@ -68,11 +68,11 @@ export default function createTaskForm(projects){
     formBox2.append(projectSelector, cancelTaskBtn, submitFormBtn);
 
     form.append(formBox1, formBox2);
-    form.addEventListener("submit", (event)=>{
-        event.preventDefault();
+    // form.addEventListener("submit", (event)=>{
+    //     event.preventDefault();
 
-        //probably need to run a callback function as a parameter
-    })
+    //     //probably need to run a callback function as a parameter
+    // })
 
     return { form }
 }
