@@ -5,6 +5,7 @@ import Task from "./task.js";
 import AppManager from "./app-manager.js";
 import { renderController } from "./DOM-creation-modules/display-tasks.js";
 import createTaskForm from "./DOM-creation-modules/task-form.js";
+import createProjectForm from "./DOM-creation-modules/project-form.js";
 import initApp from "./ui-controller.js";
 
 // renderController([]);
@@ -15,7 +16,8 @@ manager.addProject("tasktest");
 window.Task = Task;
 window.manager = manager;
 
-// createTaskForm(manager.allProjects);
+createTaskForm(manager.allProjects);
+createProjectForm();
 
 initApp(manager);
 

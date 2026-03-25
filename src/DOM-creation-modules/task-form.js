@@ -2,13 +2,13 @@ export default function createTaskForm(projects){
 
     const main = document.getElementById("main");
 
-    const formModal = document.createElement("div");
-    formModal.id = "formModal";
-    main.appendChild(formModal);
+    const taskFormModal = document.createElement("div");
+    taskFormModal.id = "taskFormModal";
+    main.appendChild(taskFormModal);
 
-    const form = document.createElement("form");
-    form.id = "form";
-    formModal.appendChild(form);
+    const taskForm = document.createElement("form");
+    taskForm.id = "taskForm";
+    taskFormModal.appendChild(taskForm);
 
     const formBox1 = document.createElement("div");
     formBox1.id = "formBox1";
@@ -22,6 +22,7 @@ export default function createTaskForm(projects){
     taskDescription.placeholder = "Description";
     
     const selectionBox = document.createElement("div");
+    selectionBox.id = "selectionBox";
 
     //Make a calendar input here?
     const dateInput = document.createElement("input");
@@ -68,7 +69,7 @@ export default function createTaskForm(projects){
     cancelTaskBtn.textContent = "Cancel";
     cancelTaskBtn.id = "cancelTaskBtn";
     cancelTaskBtn.addEventListener("click", ()=>{
-        formModal.remove();
+        taskFormModal.remove();
     });
 
     const submitFormBtn = document.createElement("button");
@@ -78,12 +79,12 @@ export default function createTaskForm(projects){
 
     formBox2.append(projectSelector, cancelTaskBtn, submitFormBtn);
 
-    form.append(formBox1, formBox2);
+    taskForm.append(formBox1, formBox2);
     // form.addEventListener("submit", (event)=>{
     //     event.preventDefault();
 
     //     //probably need to run a callback function as a parameter
     // })
 
-    return { form }
+    return { taskForm }
 }

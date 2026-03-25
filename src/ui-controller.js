@@ -1,4 +1,4 @@
-import TaskManager from "./app-manager.js";
+import createProjectForm from "./DOM-creation-modules/project-form.js";
 import createTaskForm from "./DOM-creation-modules/task-form.js";
 import Task from "./task.js";
 
@@ -10,16 +10,21 @@ export default function initApp(manager){
         createTaskForm(manager.allProjects);
     });
 
-    form.addEventListener("submit", (event)=>{
-        event.preventDefault();
-        const task = new Task(
-            this.title.value,
-            this.description.value,
-            this.dueDate.value,
-            this.priority.value
-        );
-
-        addTask(task);
+    const addProjectBtnSidebar = document.getElementById("addProjectBtn");
+    addProjectBtnSidebar.addEventListener("submit", (event)=>{
+        createProjectForm();
     });
+
+    // form.addEventListener("submit", (event)=>{
+    //     event.preventDefault();
+    //     const task = new Task(
+    //         this.title.value,
+    //         this.description.value,
+    //         this.dueDate.value,
+    //         this.priority.value
+    //     );
+
+    //     addTask(task);
+    // });
 
 }
