@@ -23,15 +23,17 @@ export default function createTaskForm(projects){
     
     const selectionBox = document.createElement("div");
 
-    //Make a calendar input here
+    //Make a calendar input here?
+    const dateInput = document.createElement("input");
+    dateInput.type = "text";
+    dateInput.placeholder = "25/06/2027";
+    //add pattern attribute to date input for validity.
 
-    
-    //Make a priority select element here
     const prioritySelector = document.createElement("select");
-    const defaultOption = document.createElement("option");
-    defaultOption.value = "";
-    defaultOption.textContent = "Priority";
-    defaultOption.hidden = true;
+    const defaultPriorityOption = document.createElement("option");
+    defaultPriorityOption.value = "";
+    defaultPriorityOption.textContent = "Priority";
+    defaultPriorityOption.hidden = true;
     const highOption = document.createElement("option");
     highOption.textContent = "High";
     highOption.value = "highPriority";
@@ -41,17 +43,26 @@ export default function createTaskForm(projects){
     const lowOption = document.createElement("option");
     lowOption.textContent = "Low";
     lowOption.value = "lowPriority";
-    prioritySelector.append(defaultOption, highOption, mediumOption, lowOption);
+    prioritySelector.append(defaultPriorityOption, highOption, mediumOption, lowOption);
 
-    selectionBox.append(prioritySelector); //append calendar
+    selectionBox.append(prioritySelector, dateInput); //append calendar/date picker
     formBox1.append(taskTitle, taskDescription, selectionBox);
 
     const formBox2 = document.createElement("div");
     formBox2.id = "formBox2";
 
-    //Make a project selector drop-down list here
+    //IF a user opens the form, adds a project, then comes back to form, this needs to update.
     const projectSelector = document.createElement("select");
-    //Grab projects from project-manager module .allTasks and loop through to create options
+    const defaultProjectOption = document.createElement("option");
+    defaultProjectOption.textContent = "My Tasks";
+    defaultPriorityOption.value = "My Tasks";
+    defaultProjectOption.selected = true;
+    projectSelector.appendChild(defaultProjectOption);
+    for(const project of projects){
+        const projectTitle = document.createElement("option");
+        projectTitle.textContent = project;
+        projectSelector.appendChild(projectTitle);
+    }
 
     const cancelTaskBtn = document.createElement("button");
     cancelTaskBtn.textContent = "Cancel";
