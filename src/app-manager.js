@@ -3,13 +3,13 @@ import Project from "./project.js";
 // This module will act as a "Library" if "tasks" are your books.
 export default class AppManager{
     constructor(){
-        this.projects = [];
+        //might have to add "My Tasks hardcoded as a default project"
+        this.projects = ["My Tasks"];
     }
 
     // static sortTasks = {
-
+        //probably need sort methods here too
     // }
-    //probably need sort methods here too
 
     addProject(project){
         this.projects.push(project);
@@ -24,7 +24,7 @@ export default class AppManager{
     }
 
     addTaskToProject(projectID, task){
-        const project = this.projects.getProject(projectID);
+        const project = this.getProject(projectID);
         if(project){
             project.addTask(task);
         }

@@ -16,6 +16,7 @@ export default function createProjectForm(){
     projectFormModal.appendChild(projectForm);
 
     const projectTitle = document.createElement("input");
+    projectTitle.id = "projectTitle";
     projectTitle.type = "text";
     projectTitle.placeholder = "Name your project"
     
@@ -42,5 +43,5 @@ export default function createProjectForm(){
     projectBtnContainer.append(submitProjectBtn, cancelProjectBtn);
     projectForm.append(projectTitle, projectBtnContainer);
 
-    return { projectForm }
+    return projectForm 
 }

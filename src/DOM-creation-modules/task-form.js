@@ -14,10 +14,12 @@ export default function createTaskForm(projects){
     formBox1.id = "formBox1";
     
     const taskTitle = document.createElement("input");
+    taskTitle.id = "taskTitle";
     taskTitle.type = "text";
     taskTitle.placeholder = "Name your task";
     
     const taskDescription = document.createElement("input");
+    taskDescription.id = "taskDescription";
     taskDescription.type = "text";
     taskDescription.placeholder = "Description";
     
@@ -25,12 +27,14 @@ export default function createTaskForm(projects){
     selectionBox.id = "selectionBox";
 
     //Make a calendar input here?
-    const dateInput = document.createElement("input");
-    dateInput.type = "text";
-    dateInput.placeholder = "25/06/2027";
+    const dueDate = document.createElement("input");
+    dueDate.id = "dueDate";
+    dueDate.type = "text";
+    dueDate.placeholder = "25/06/2027";
     //add pattern attribute to date input for validity.
 
     const prioritySelector = document.createElement("select");
+    prioritySelector.id = "prioritySelector";
     const defaultPriorityOption = document.createElement("option");
     defaultPriorityOption.value = "";
     defaultPriorityOption.textContent = "Priority";
@@ -46,7 +50,7 @@ export default function createTaskForm(projects){
     lowOption.value = "lowPriority";
     prioritySelector.append(defaultPriorityOption, highOption, mediumOption, lowOption);
 
-    selectionBox.append(prioritySelector, dateInput); //append calendar/date picker
+    selectionBox.append(prioritySelector, dueDate); //append calendar/date picker
     formBox1.append(taskTitle, taskDescription, selectionBox);
 
     const formBox2 = document.createElement("div");
@@ -54,15 +58,17 @@ export default function createTaskForm(projects){
 
     //IF a user opens the form, adds a project, then comes back to form, this needs to update.
     const projectSelector = document.createElement("select");
+    projectSelector.id = "projectSelector";
     const defaultProjectOption = document.createElement("option");
     defaultProjectOption.textContent = "My Tasks";
     defaultPriorityOption.value = "My Tasks";
     defaultProjectOption.selected = true;
     projectSelector.appendChild(defaultProjectOption);
     for(const project of projects){
-        const projectTitle = document.createElement("option");
-        projectTitle.textContent = project;
-        projectSelector.appendChild(projectTitle);
+        const projectOption = document.createElement("option");
+        projectOption.textContent = project;
+        projectOption.value = project.id;
+        projectSelector.appendChild(projectOption);
     }
 
     const cancelTaskBtn = document.createElement("button");
@@ -80,11 +86,6 @@ export default function createTaskForm(projects){
     formBox2.append(projectSelector, cancelTaskBtn, submitFormBtn);
 
     taskForm.append(formBox1, formBox2);
-    // form.addEventListener("submit", (event)=>{
-    //     event.preventDefault();
 
-    //     //probably need to run a callback function as a parameter
-    // })
-
-    return { taskForm }
+    return taskForm
 }

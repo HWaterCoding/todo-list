@@ -253,11 +253,25 @@ body {
 
 #projectFormModal{
     background: var(--light-pink-theme);
-    padding: clamp(1rem, 20px, 1.5rem) clamp(1rem, 20px, 1.5rem) 0 clamp(1rem, 20px, 1.5rem);
+    padding: clamp(1rem, 20px, 1.5rem);
     border: 1px var(--salmon-theme) solid;
     border-radius: 15px;
 }
 
 #projectForm{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    /* padding: clamp(1rem, 20px, 1.5rem); */
+}
 
+#projectForm input{
+    all: unset;
+    text-align: center;
+}
+
+#projectBtnContainer{
+    display: flex;
+    gap: 10px;
 }

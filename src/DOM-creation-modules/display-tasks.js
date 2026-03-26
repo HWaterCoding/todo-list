@@ -17,12 +17,20 @@ function renderEmptyState(main){
     const addTaskIcon = document.createElement("i");
     addTaskIcon.classList.add("fa-solid", "fa-plus");
     addTaskBtn.append(addTaskIcon, "Add Tasks");
+    //addEventListener here?
+    addTaskBtn.addEventListener("click", ()=>{
+
+    });
 
     const addProjectBtn = document.createElement("button");
     addProjectBtn.id = "defaultAddProjectBtn";
     const addProjectIcon = document.createElement("i");
     addProjectIcon.classList.add("fa-solid", "fa-plus");
     addProjectBtn.append(addProjectIcon, "Add Projects");
+    //addEventListener here?
+    addProjectBtn.addEventListener("click", ()=>{
+
+    });
 
     defaultButtonsContainer.append(addTaskBtn, addProjectBtn)
 

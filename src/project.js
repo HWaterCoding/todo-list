@@ -10,7 +10,7 @@ export default class Project{
         this.tasks.push(task);
     }
 
-    deleteTask(taskID){
+    removeTask(taskID){
         this.tasks = this.tasks.filter(task => task.id !== taskID);
     }
 }
