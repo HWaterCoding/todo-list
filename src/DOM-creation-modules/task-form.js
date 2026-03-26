@@ -87,5 +87,5 @@ export default function createTaskForm(projects){
 
     taskForm.append(formBox1, formBox2);
 
-    return taskForm
+    return { taskForm, taskFormModal }
 }

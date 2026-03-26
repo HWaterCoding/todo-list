@@ -39,7 +39,10 @@ function renderEmptyState(main){
 }
 
 function renderTaskList(main, tasks){
-    // use forEach to go through each task and render information to list 
+
+    tasks.forEach(task => {
+        
+    });
 }
 
 export function renderController(tasks){

@@ -9,19 +9,21 @@ export default function initApp(manager){
 
     const addTaskBtnSidebar = document.getElementById("addTaskBtn");
     addTaskBtnSidebar.addEventListener("click", ()=>{
-        const taskForm = createTaskForm(manager.allProjects);
-        taskForm.addEventListener("submit", (event)=>{
+        const doesFormExist = document.getElementById("taskForm");
+        if(doesFormExist) return;
+        const form = createTaskForm(manager.allProjects);
+        form.taskForm.addEventListener("submit", (event)=>{
             event.preventDefault();
             const task = new Task(
-                taskForm.taskTitle.value,
-                taskForm.taskDescription.value,
-                taskForm.dueDate.value,
-                taskForm.prioritySelector.value,
+                form.taskForm.taskTitle.value,
+                form.taskForm.taskDescription.value,
+                form.taskForm.dueDate.value,
+                form.taskForm.prioritySelector.value,
             );
-            let projectID = taskForm.projectSelector.value;
+            let projectID = form.taskForm.projectSelector.value;
             manager.addTaskToProject(projectID, task);
-            manager.addTaskToProject(projectID = "My Tasks", task)
-            //also make sure its by default added to the "My Tasks" project as well
+            //also make sure every task by default added to the "My Tasks" project as well
+            form.taskFormModal.remove();
         }); 
     });
 

@@ -17,6 +17,17 @@ window.manager = manager;
 initApp(manager);
 
 
+//To-Do next:
+//1) Create a rough draft of what an added task will look like in the HTML. (needs a delete+edit button)
+//2) style that task in your css
+//3) Then create that task in the display-tasks module renderTaskList() function
+//4) finish addProjectSidebarBtn logic in ui-controller module
+//5) create a module for rendering projects on the list on the side. 
+
+
+
+
+
 
 //Ideas:
 //When a new task is created, always add it to the "My tasks" project.
