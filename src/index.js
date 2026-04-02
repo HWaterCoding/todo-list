@@ -17,6 +17,8 @@ window.manager = manager;
 initApp(manager);
 
 
+
+
 //To-Do next:
 //1) Create a rough draft of what an added task will look like in the HTML. (needs a delete+edit button)
 //2) style that task in your css

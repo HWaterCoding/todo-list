@@ -29,12 +29,15 @@ export default function initApp(manager){
 
     const addProjectBtnSidebar = document.getElementById("addProjectBtn");
     addProjectBtnSidebar.addEventListener("click", ()=>{
-        const projectForm = createProjectForm();
-        projectForm.addEventListener("submit", (event)=>{
+        const form = createProjectForm();
+        form.projectForm.addEventListener("submit", (event)=>{
             event.preventDefault();
             const project = new Project(
-                projectForm.projectTitle.value
+                form.projectForm.projectTitle.value
             );
+            manager.addProject(project.name);
+            form.projectFormOverlay.remove();
+            console.log(manager.allProjects)
         });
     });
 }
