@@ -237,6 +237,65 @@ body {
 /* style buttons for form */
 
 
+/* Task Items */
+
+#task{
+    display: flex;
+    background-color: var(--light-pink-theme);
+    width: 60%;
+    max-width: 100%;
+    border: 1px var(--salmon-theme) solid;
+    border-radius: 15px;
+    padding: 20px;
+    gap: 15px;
+}
+
+#completedCheckbox{
+    width: 20px;
+    height: 20px;
+}
+
+#completedCheckbox:hover{
+    cursor: pointer;
+}
+
+#taskItemInfo{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    flex: 1;
+}
+
+#taskItemInfo input{
+    all: unset;
+    width: 40%;
+}
+
+#taskItemButtons{
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+#taskItemButtons button{
+    all: unset;
+    font-size: 1.5rem;
+}
+
+#taskItemButtons button:hover{
+    cursor: pointer;
+}
+
+#deleteTaskButton i{
+    color: red;
+}
+
+#editTaskButton i{
+    color: var(--salmon-theme)
+}
+
+
+
 
 
 /* Create Project Form */

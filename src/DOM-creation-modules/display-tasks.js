@@ -38,8 +38,8 @@ function renderEmptyState(main){
     main.appendChild(defaultMessageDiv);
 }
 
+//add a project parameter to loop through each task in a project and render accordingly.
 function renderTaskList(main, tasks){
-
     tasks.forEach(task => {
         
     });

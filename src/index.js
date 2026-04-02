@@ -6,7 +6,8 @@ import AppManager from "./app-manager.js";
 import { renderController } from "./DOM-creation-modules/display-tasks.js";
 import initApp from "./ui-controller.js";
 
-renderController([]);
+//On page load we will render the "My Tasks" list that's stored.
+// renderController([]);
 
 const manager = new AppManager();
 manager.addProject("tasktest");
@@ -15,6 +16,9 @@ window.Task = Task;
 window.manager = manager;
 
 initApp(manager);
+
+
+
 
 
 

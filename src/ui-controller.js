@@ -23,6 +23,7 @@ export default function initApp(manager){
             let projectID = form.taskForm.projectSelector.value;
             manager.addTaskToProject(projectID, task);
             //also make sure every task by default added to the "My Tasks" project as well
+            //render tasks created instantly under "My Tasks".
             form.taskFormModal.remove();
         }); 
     });
@@ -36,6 +37,7 @@ export default function initApp(manager){
                 form.projectForm.projectTitle.value
             );
             manager.addProject(project.name);
+            //render projects on side list 
             form.projectFormOverlay.remove();
             console.log(manager.allProjects)
         });
