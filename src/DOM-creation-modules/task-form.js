@@ -26,12 +26,10 @@ export default function createTaskForm(projects){
     const selectionBox = document.createElement("div");
     selectionBox.id = "selectionBox";
 
-    //Make a calendar input here?
     const dueDate = document.createElement("input");
     dueDate.id = "dueDate";
-    dueDate.type = "text";
-    dueDate.placeholder = "25/06/2027";
-    //add pattern attribute to date input for validity.
+    dueDate.type = "date";
+    // dueDate.placeholder = Date.now();
 
     const prioritySelector = document.createElement("select");
     prioritySelector.id = "prioritySelector";
@@ -57,6 +55,7 @@ export default function createTaskForm(projects){
     formBox2.id = "formBox2";
 
     //IF a user opens the form, adds a project, then comes back to form, this needs to update.
+    //Or, just make it so when someone clicks off the taskform, it closes. Easier, better design. <-- do this
     const projectSelector = document.createElement("select");
     projectSelector.id = "projectSelector";
     const defaultProjectOption = document.createElement("option");

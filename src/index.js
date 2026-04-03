@@ -10,7 +10,6 @@ import initApp from "./ui-controller.js";
 // renderController([]);
 
 const manager = new AppManager();
-manager.addProject("tasktest");
 
 window.Task = Task;
 window.manager = manager;

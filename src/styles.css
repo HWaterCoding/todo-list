@@ -110,6 +110,16 @@ body {
     justify-content: space-between;
 }
 
+#projectList{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#projectList button{
+    font-size: 1.5rem;
+}
+
 #serviceSection{
     justify-content: flex-end;
 }

@@ -1,4 +1,15 @@
 //renderController to be exported and run, renderEmptyState and renderTaskList depending on data state
+export function renderController(tasks){
+    const main = document.getElementById("main");
+
+    //might have to change length to =< 1, if "My Tasks" is hardcoded in as a project.
+    if(tasks.length === 0){
+        renderEmptyState(main);
+    } else{
+        renderTaskList(main, tasks);
+    }
+}
+
 function renderEmptyState(main){
     const defaultMessageDiv = document.createElement("div");
     defaultMessageDiv.id = "defaultMessageDiv";
@@ -38,19 +49,21 @@ function renderEmptyState(main){
     main.appendChild(defaultMessageDiv);
 }
 
-//add a project parameter to loop through each task in a project and render accordingly.
 function renderTaskList(main, tasks){
     tasks.forEach(task => {
         
     });
 }
 
-export function renderController(tasks){
-    const main = document.getElementById("main");
+//add function to render project list on the sidebar
+export function renderProjectList(projects){
+    const projectList = document.getElementById("projectList");
+    projectList.innerHTML = "";
 
-    if(tasks.length === 0){
-        renderEmptyState(main);
-    } else{
-        renderTaskList(main, tasks);
-    }
+    projects.forEach(project =>{
+        const projectButton = document.createElement("button");
+        projectButton.textContent = project.name;
+
+        projectList.appendChild(projectButton);
+    });
 }

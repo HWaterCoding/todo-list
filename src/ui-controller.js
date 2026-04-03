@@ -2,8 +2,8 @@ import createProjectForm from "./DOM-creation-modules/project-form.js";
 import createTaskForm from "./DOM-creation-modules/task-form.js";
 import Task from "./task.js";
 import Project from "./project.js";
+import { renderController, renderProjectList } from "./DOM-creation-modules/display-tasks.js";
 
-// This module will bind and control UI 
 export default function initApp(manager){
     //add event listeners for addTaskBtn and addProjectBtn here
 
@@ -24,9 +24,17 @@ export default function initApp(manager){
             manager.addTaskToProject(projectID, task);
             //also make sure every task by default added to the "My Tasks" project as well
             //render tasks created instantly under "My Tasks".
+            const projectToRender = manager.getProject(projectID);
+            const tasksToRender = projectToRender.tasks;
+            renderController(tasksToRender);
             form.taskFormModal.remove();
         }); 
     });
+
+    //for the above listener:
+    //1) add task then render the project its being added to 
+    //2) track the currentProject being viewed, let sidebar project buttons change it's value.
+    //3) render always based on currentProject value
 
     const addProjectBtnSidebar = document.getElementById("addProjectBtn");
     addProjectBtnSidebar.addEventListener("click", ()=>{
@@ -36,10 +44,9 @@ export default function initApp(manager){
             const project = new Project(
                 form.projectForm.projectTitle.value
             );
-            manager.addProject(project.name);
-            //render projects on side list 
+            manager.addProject(project);
+            renderProjectList(manager.allProjects);
             form.projectFormOverlay.remove();
-            console.log(manager.allProjects)
         });
     });
 }

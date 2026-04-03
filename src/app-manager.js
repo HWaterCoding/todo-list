@@ -4,7 +4,7 @@ import Project from "./project.js";
 export default class AppManager{
     constructor(){
         //might have to add "My Tasks hardcoded as a default project"
-        this.projects = ["My Tasks"];
+        this.projects = [];
     }
 
     // static sortTasks = {
