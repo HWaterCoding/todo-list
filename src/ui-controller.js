@@ -49,4 +49,12 @@ export default function initApp(manager){
             form.projectFormOverlay.remove();
         });
     });
+
+
+    //editTaskBtn event listeners
+
+    //deleteTaskBtn event listeners
+
+    //project switching event listeners
+
 }

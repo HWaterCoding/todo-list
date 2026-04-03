@@ -216,9 +216,9 @@ body {
     border-radius: 15px;
 }
 
-#taskForm{
+/* #taskForm{
     
-}
+} */
 
 #formBox1{
     display: flex;
@@ -249,7 +249,7 @@ body {
 
 /* Task Items */
 
-#task{
+#taskItem{
     display: flex;
     background-color: var(--light-pink-theme);
     width: 60%;
@@ -296,11 +296,11 @@ body {
     cursor: pointer;
 }
 
-#deleteTaskButton i{
+#deleteTaskBtn i{
     color: red;
 }
 
-#editTaskButton i{
+#editTaskBtn i{
     color: var(--salmon-theme)
 }
 

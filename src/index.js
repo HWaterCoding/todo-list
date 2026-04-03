@@ -5,6 +5,8 @@ import Task from "./task.js";
 import AppManager from "./app-manager.js";
 import { renderController } from "./DOM-creation-modules/display-tasks.js";
 import initApp from "./ui-controller.js";
+import Project from "./project.js";
+
 
 //On page load we will render the "My Tasks" list that's stored.
 // renderController([]);
@@ -18,13 +20,12 @@ initApp(manager);
 
 
 
-
+const testProject = new Project("Test Project");
+manager.addProject(testProject);
 
 
 
 //To-Do next:
-//1) Create a rough draft of what an added task will look like in the HTML. (needs a delete+edit button)
-//2) style that task in your css
 //3) Then create that task in the display-tasks module renderTaskList() function
 //4) finish addProjectSidebarBtn logic in ui-controller module
 //5) create a module for rendering projects on the list on the side. 

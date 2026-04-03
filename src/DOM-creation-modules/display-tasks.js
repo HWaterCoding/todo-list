@@ -50,12 +50,61 @@ function renderEmptyState(main){
 }
 
 function renderTaskList(main, tasks){
+    main.innerHTML = "";
     tasks.forEach(task => {
+
+        const taskItem = document.createElement("div");
+        taskItem.id = "taskItem";
+
+        const completedCheckbox = document.createElement("input")
+        completedCheckbox.type = "checkbox";
+        completedCheckbox.id = "completedCheckbox";
+
+        const taskItemInfo = document.createElement("div");
+        taskItemInfo.id = "taskItemInfo";
+
+        const taskItemTitle = document.createElement("input");
+        taskItemTitle.id = "taskItemTitle";
+        taskItemTitle.type = "text";
+        taskItemTitle.value = task.title;
+        taskItemTitle.readOnly = "true";
+
+        const taskItemDescription = document.createElement("input");
+        taskItemDescription.id = "taskItemDescription";
+        taskItemDescription.type = "text";
+        taskItemDescription.value = task.description;
+        taskItemDescription.readOnly = "true";
+
+        const taskItemDueDate = document.createElement("input");
+        taskItemDueDate.id = "taskItemDueDate";
+        taskItemDueDate.type = "date";
+        taskItemDueDate.value = task.dueDate;
+        taskItemDueDate.readOnly = "true";
         
+        taskItemInfo.append(taskItemTitle, taskItemDescription, taskItemDueDate);
+
+        const taskItemButtons = document.createElement("div");
+        taskItemButtons.id = "taskItemButtons";
+
+        const editTaskBtn = document.createElement("button");
+        editTaskBtn.id = "editTaskBtn";
+        const editTaskIcon = document.createElement("i");
+        editTaskIcon.classList.add("fa-regular", "fa-pen-to-square");
+        editTaskBtn.appendChild(editTaskIcon);
+
+        const deleteTaskBtn = document.createElement("button");
+        deleteTaskBtn.id = "deleteTaskBtn"
+        const deleteTaskIcon = document.createElement("i");
+        deleteTaskIcon.classList.add("fa-solid", "fa-trash-can");
+        deleteTaskBtn.appendChild(deleteTaskIcon);
+
+        taskItemButtons.append(editTaskBtn, deleteTaskBtn);
+
+        taskItem.append(completedCheckbox, taskItemInfo, taskItemButtons);
+        main.appendChild(taskItem);
     });
 }
 
-//add function to render project list on the sidebar
 export function renderProjectList(projects){
     const projectList = document.getElementById("projectList");
     projectList.innerHTML = "";

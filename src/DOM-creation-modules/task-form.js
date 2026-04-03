@@ -17,6 +17,7 @@ export default function createTaskForm(projects){
     taskTitle.id = "taskTitle";
     taskTitle.type = "text";
     taskTitle.placeholder = "Name your task";
+    taskTitle.required = "true";
     
     const taskDescription = document.createElement("input");
     taskDescription.id = "taskDescription";
@@ -33,6 +34,7 @@ export default function createTaskForm(projects){
 
     const prioritySelector = document.createElement("select");
     prioritySelector.id = "prioritySelector";
+    // prioritySelector.required = "true";
     const defaultPriorityOption = document.createElement("option");
     defaultPriorityOption.value = "";
     defaultPriorityOption.textContent = "Priority";
@@ -65,7 +67,7 @@ export default function createTaskForm(projects){
     projectSelector.appendChild(defaultProjectOption);
     for(const project of projects){
         const projectOption = document.createElement("option");
-        projectOption.textContent = project;
+        projectOption.textContent = project.name;
         projectOption.value = project.id;
         projectSelector.appendChild(projectOption);
     }
