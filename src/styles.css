@@ -249,7 +249,7 @@ body {
 
 /* Task Items */
 
-#taskItem{
+.taskItem{
     display: flex;
     background-color: var(--light-pink-theme);
     width: 60%;
@@ -260,47 +260,47 @@ body {
     gap: 15px;
 }
 
-#completedCheckbox{
+.completedCheckbox{
     width: 20px;
     height: 20px;
 }
 
-#completedCheckbox:hover{
+.completedCheckbox:hover{
     cursor: pointer;
 }
 
-#taskItemInfo{
+.taskItemInfo{
     display: flex;
     flex-direction: column;
     gap: 5px;
     flex: 1;
 }
 
-#taskItemInfo input{
+.taskItemInfo input{
     all: unset;
     width: 40%;
 }
 
-#taskItemButtons{
+.taskItemButtons{
     display: flex;
     align-items: flex-start;
     gap: 10px;
 }
 
-#taskItemButtons button{
+.taskItemButtons button{
     all: unset;
     font-size: 1.5rem;
 }
 
-#taskItemButtons button:hover{
+.taskItemButtons button:hover{
     cursor: pointer;
 }
 
-#deleteTaskBtn i{
+.deleteTaskBtn i{
     color: red;
 }
 
-#editTaskBtn i{
+.editTaskBtn i{
     color: var(--salmon-theme)
 }
 

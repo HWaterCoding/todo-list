@@ -5,7 +5,8 @@ import Project from "./project.js";
 import { renderController, renderProjectList } from "./DOM-creation-modules/display-tasks.js";
 
 export default function initApp(manager){
-    //add event listeners for addTaskBtn and addProjectBtn here
+
+    let currentProjectId = null;
 
     const addTaskBtnSidebar = document.getElementById("addTaskBtn");
     addTaskBtnSidebar.addEventListener("click", ()=>{
@@ -51,10 +52,33 @@ export default function initApp(manager){
     });
 
 
-    //editTaskBtn event listeners
+    // editTaskBtn event listeners
+    const main = document.getElementById("main");
+    main.addEventListener("click", (event)=>{
+        const isDeleteButton = event.target.closest(".deleteTaskBtn");
+        const isEditButton = event.target.closest(".editTaskBtn");
+        if(!isDeleteButton || !isEditButton) return;
+        if(isDeleteButton){
+            const taskToDelete = event.target.closest(".taskItem");
+            const idToDelete = taskToDelete.dataset.id;
+            const project = manager.getProject();
+            project.removeTask(idToDelete)
+        }
+        if(isEditButton){
+            //code to edit
+        }
+    })
 
-    //deleteTaskBtn event listeners
-
+    
     //project switching event listeners
-
+    const projectList = document.getElementById("projectList");
+    projectList.addEventListener("click", (event)=>{
+        main.innerHTML = "";
+        const isProject = event.target.closest(".projectButton")
+        if(!isProject) return;
+        currentProjectId = isProject.dataset.id;
+        const projectToRender = manager.getProject(currentProjectId);
+        const tasksToRender = projectToRender.tasks;
+        renderController(tasksToRender);
+    })
 }

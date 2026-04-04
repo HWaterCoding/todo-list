@@ -54,29 +54,35 @@ function renderTaskList(main, tasks){
     tasks.forEach(task => {
 
         const taskItem = document.createElement("div");
-        taskItem.id = "taskItem";
+        taskItem.classList.add("taskItem");
+        taskItem.dataset.id = task.id;
 
         const completedCheckbox = document.createElement("input")
         completedCheckbox.type = "checkbox";
-        completedCheckbox.id = "completedCheckbox";
+        completedCheckbox.classList.add("completedCheckbox");
+        // completedCheckbox.id = "completedCheckbox";
 
         const taskItemInfo = document.createElement("div");
-        taskItemInfo.id = "taskItemInfo";
+        taskItemInfo.classList.add("taskItemInfo");
+        // taskItemInfo.id = "taskItemInfo";
 
         const taskItemTitle = document.createElement("input");
-        taskItemTitle.id = "taskItemTitle";
+        taskItemTitle.classList.add("taskItemTitle");
+        // taskItemTitle.id = "taskItemTitle";
         taskItemTitle.type = "text";
         taskItemTitle.value = task.title;
         taskItemTitle.readOnly = "true";
 
         const taskItemDescription = document.createElement("input");
-        taskItemDescription.id = "taskItemDescription";
+        taskItemDescription.classList.add("taskItemDescription");
+        // taskItemDescription.id = "taskItemDescription";
         taskItemDescription.type = "text";
         taskItemDescription.value = task.description;
         taskItemDescription.readOnly = "true";
 
         const taskItemDueDate = document.createElement("input");
-        taskItemDueDate.id = "taskItemDueDate";
+        taskItemDueDate.classList.add("taskItemDueDate");
+        // taskItemDueDate.id = "taskItemDueDate";
         taskItemDueDate.type = "date";
         taskItemDueDate.value = task.dueDate;
         taskItemDueDate.readOnly = "true";
@@ -84,16 +90,19 @@ function renderTaskList(main, tasks){
         taskItemInfo.append(taskItemTitle, taskItemDescription, taskItemDueDate);
 
         const taskItemButtons = document.createElement("div");
-        taskItemButtons.id = "taskItemButtons";
+        taskItemButtons.classList.add("taskItemButtons");
+        // taskItemButtons.id = "taskItemButtons";
 
         const editTaskBtn = document.createElement("button");
-        editTaskBtn.id = "editTaskBtn";
+        editTaskBtn.classList.add("editTaskBtn");
+        // editTaskBtn.id = "editTaskBtn";
         const editTaskIcon = document.createElement("i");
         editTaskIcon.classList.add("fa-regular", "fa-pen-to-square");
         editTaskBtn.appendChild(editTaskIcon);
 
         const deleteTaskBtn = document.createElement("button");
-        deleteTaskBtn.id = "deleteTaskBtn"
+        deleteTaskBtn.classList.add("deleteTaskBtn");
+        // deleteTaskBtn.id = "deleteTaskBtn"
         const deleteTaskIcon = document.createElement("i");
         deleteTaskIcon.classList.add("fa-solid", "fa-trash-can");
         deleteTaskBtn.appendChild(deleteTaskIcon);
@@ -111,7 +120,9 @@ export function renderProjectList(projects){
 
     projects.forEach(project =>{
         const projectButton = document.createElement("button");
+        projectButton.classList.add("projectButton");
         projectButton.textContent = project.name;
+        projectButton.dataset.id = project.id;
 
         projectList.appendChild(projectButton);
     });
