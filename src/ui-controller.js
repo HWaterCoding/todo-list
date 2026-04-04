@@ -25,8 +25,12 @@ export default function initApp(manager){
             manager.addTaskToProject(projectID, task);
             //also make sure every task by default added to the "My Tasks" project as well
             //render tasks created instantly under "My Tasks".
-            const projectToRender = manager.getProject(projectID);
+            // const projectToRender = manager.getProject(projectID);
+            const projectToRender = manager.getProject(currentProjectId);
             const tasksToRender = projectToRender.tasks;
+            // if(tasksToRender === undefined){
+                //renderController("My Tasks");
+            // }
             renderController(tasksToRender);
             form.taskFormModal.remove();
         }); 
@@ -57,19 +61,22 @@ export default function initApp(manager){
     main.addEventListener("click", (event)=>{
         const isDeleteButton = event.target.closest(".deleteTaskBtn");
         const isEditButton = event.target.closest(".editTaskBtn");
-        if(!isDeleteButton || !isEditButton) return;
+        if(!isDeleteButton && !isEditButton) return;
         if(isDeleteButton){
-            const taskToDelete = event.target.closest(".taskItem");
-            const idToDelete = taskToDelete.dataset.id;
-            const project = manager.getProject();
+            const task = event.target.closest(".taskItem");
+            const idToDelete = task.dataset.id;
+            const project = manager.getProject(currentProjectId);
             project.removeTask(idToDelete)
+            renderController(project.tasks);
         }
         if(isEditButton){
-            //code to edit
+            // switch inputs on task items from readonly to editable
+            //store all new inputs.
+            //rerender
         }
     })
 
-    
+
     //project switching event listeners
     const projectList = document.getElementById("projectList");
     projectList.addEventListener("click", (event)=>{

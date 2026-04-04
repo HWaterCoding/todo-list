@@ -3,13 +3,12 @@ import "./styles.css";
 
 import Task from "./task.js";
 import AppManager from "./app-manager.js";
-import { renderController } from "./DOM-creation-modules/display-tasks.js";
+import { renderController, renderProjectList } from "./DOM-creation-modules/display-tasks.js";
 import initApp from "./ui-controller.js";
 import Project from "./project.js";
 
 
 //On page load we will render the "My Tasks" list that's stored.
-// renderController([]);
 
 const manager = new AppManager();
 
@@ -18,17 +17,11 @@ window.manager = manager;
 
 initApp(manager);
 
-
-
+//will remove this, just for accessibility testing
+renderController([]);
 const testProject = new Project("Test Project");
 manager.addProject(testProject);
-
-
-
-//To-Do next:
-//3) Then create that task in the display-tasks module renderTaskList() function
-//4) finish addProjectSidebarBtn logic in ui-controller module
-//5) create a module for rendering projects on the list on the side. 
+renderProjectList(manager.allProjects);
 
 
 

@@ -11,6 +11,9 @@ export function renderController(tasks){
 }
 
 function renderEmptyState(main){
+
+    main.innerHTML = "";
+
     const defaultMessageDiv = document.createElement("div");
     defaultMessageDiv.id = "defaultMessageDiv";
     
@@ -117,6 +120,8 @@ function renderTaskList(main, tasks){
 export function renderProjectList(projects){
     const projectList = document.getElementById("projectList");
     projectList.innerHTML = "";
+
+    //need to add a display at the top left to indicate which project is currently active.
 
     projects.forEach(project =>{
         const projectButton = document.createElement("button");
