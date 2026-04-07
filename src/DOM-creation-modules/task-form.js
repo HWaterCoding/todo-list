@@ -61,8 +61,8 @@ export default function createTaskForm(projects){
     const projectSelector = document.createElement("select");
     projectSelector.id = "projectSelector";
     const defaultProjectOption = document.createElement("option");
-    defaultProjectOption.textContent = "My Tasks";
-    defaultPriorityOption.value = "My Tasks";
+    defaultProjectOption.textContent = "Inbox (default)";
+    defaultPriorityOption.value = "Inbox";
     defaultProjectOption.selected = true;
     projectSelector.appendChild(defaultProjectOption);
     for(const project of projects){

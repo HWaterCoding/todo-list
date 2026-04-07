@@ -11,18 +11,20 @@ import Project from "./project.js";
 //On page load we will render the "My Tasks" list that's stored.
 
 const manager = new AppManager();
+const project = new Project("Inbox");
+manager.addProject(project);
+initApp(manager);
+
 
 window.Task = Task;
 window.manager = manager;
 
-initApp(manager);
 
 //will remove this, just for accessibility testing
 renderController([]);
 const testProject = new Project("Test Project");
 manager.addProject(testProject);
 renderProjectList(manager.allProjects);
-
 
 
 

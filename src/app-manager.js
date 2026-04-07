@@ -3,7 +3,7 @@ import Project from "./project.js";
 // This module will act as a "Library" if "tasks" are your books.
 export default class AppManager{
     constructor(){
-        //might have to add "My Tasks hardcoded as a default project"
+        //might have to add "Inbox hardcoded as a default project"
         this.projects = [];
     }
 

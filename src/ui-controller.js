@@ -6,7 +6,8 @@ import { renderController, renderProjectList } from "./DOM-creation-modules/disp
 
 export default function initApp(manager){
 
-    let currentProjectId = null;
+    //this needs to change from null to the id for inbox section
+    let currentProjectId = "inbox";
 
     const addTaskBtnSidebar = document.getElementById("addTaskBtn");
     addTaskBtnSidebar.addEventListener("click", ()=>{
@@ -23,23 +24,60 @@ export default function initApp(manager){
             );
             let projectID = form.taskForm.projectSelector.value;
             manager.addTaskToProject(projectID, task);
-            //also make sure every task by default added to the "My Tasks" project as well
-            //render tasks created instantly under "My Tasks".
-            // const projectToRender = manager.getProject(projectID);
             const projectToRender = manager.getProject(currentProjectId);
             const tasksToRender = projectToRender.tasks;
-            // if(tasksToRender === undefined){
-                //renderController("My Tasks");
-            // }
             renderController(tasksToRender);
             form.taskFormModal.remove();
         }); 
     });
 
-    //for the above listener:
-    //1) add task then render the project its being added to 
-    //2) track the currentProject being viewed, let sidebar project buttons change it's value.
-    //3) render always based on currentProject value
+    //inbox project display
+    const inboxBtn = document.getElementById("inboxBtn");
+    inboxBtn.addEventListener("click", ()=>{
+
+    });
+
+    //  //My Tasks main tab switching and task display
+    const myTasksBtn = document.getElementById("myTasksBtn")
+    myTasksBtn.addEventListener("click", ()=>{
+        //create empty array
+        let tasks = [];
+
+        const projects = manager.allProjects;
+
+        for(const project of projects){
+
+        }
+        //use allProjects to retrieve each project array
+
+        //use a for of loop to go through each project array and extract all tasks in each project.
+        
+        //store every task in empty array above
+       
+        //append each task as it's own taskItem.
+
+        //sort them in a specific order (probably by newest to oldest)
+        
+        //set currentProjectId to "all" or something 
+
+        //My Tasks should not be an actual project, just a compiled view of every task that currently exists.
+    });
+
+
+    // //search tasks button (look up all tasks by title?)
+    const searchBtn = document.getElementById("searchBtn")
+    searchBtn.addEventListener("click", ()=>{
+
+    });
+
+    // //completed tasks switching and display
+    const completedTasksBtn = document.getElementById("completedBtn");
+    completedTasksBtn.addEventListener("click", ()=>{
+        // go through all tasks similar to the My Tasks area
+        // Only retrieve tasks with completed === true
+        // display all tasks and slightly altar display(strikethrough or something)
+    });
+
 
     const addProjectBtnSidebar = document.getElementById("addProjectBtn");
     addProjectBtnSidebar.addEventListener("click", ()=>{
@@ -61,7 +99,10 @@ export default function initApp(manager){
     main.addEventListener("click", (event)=>{
         const isDeleteButton = event.target.closest(".deleteTaskBtn");
         const isEditButton = event.target.closest(".editTaskBtn");
-        if(!isDeleteButton && !isEditButton) return;
+        const isCancelBtn = event.target.closest(".cancelEditBtn");
+        const isSaveBtn = event.target.closest(".saveEditBtn");
+        const isCompletedCheckbox = event.target.closest(".completedCheckbox");
+        if(!isDeleteButton && !isEditButton && !isCancelBtn && !isSaveBtn && !isCompletedCheckbox) return;
         if(isDeleteButton){
             const task = event.target.closest(".taskItem");
             const idToDelete = task.dataset.id;
@@ -70,22 +111,92 @@ export default function initApp(manager){
             renderController(project.tasks);
         }
         if(isEditButton){
-            // switch inputs on task items from readonly to editable
-            //store all new inputs.
-            //rerender
+            const task = event.target.closest(".taskItem");
+            const title = task.querySelector(".taskItemTitle");
+            title.readOnly = false;
+            const description = task.querySelector(".taskItemDescription");
+            description.readOnly = false;
+            const dueDate = task.querySelector(".taskItemDueDate");
+            dueDate.readOnly = false;
+            title.focus();
+
+            const editTaskButtonContainer = document.createElement("div");
+            editTaskButtonContainer.classList.add("editTaskButtonContainer");
+
+            const cancelEditBtn = document.createElement("button");
+            cancelEditBtn.classList.add("cancelEditBtn");
+            cancelEditBtn.textContent = "Cancel";
+
+            const saveEditBtn = document.createElement("button");
+            saveEditBtn.classList.add("saveEditBtn");
+            saveEditBtn.textContent = "Save";
+            
+            editTaskButtonContainer.append(cancelEditBtn, saveEditBtn);
+
+            task.append(editTaskButtonContainer);
+
+            //add/remove more styles with classlist.add() here to change the edit view slighty to be more defined
+        }
+        if(isCancelBtn){
+            const projectToRender = manager.getProject(currentProjectId);
+            const tasksToRender = projectToRender.tasks;
+            renderController(tasksToRender);
+        };
+        if(isSaveBtn){
+            const task = event.target.closest(".taskItem");
+
+            const title = task.querySelector(".taskItemTitle");
+            title.readOnly = true;
+            const description = task.querySelector(".taskItemDescription");
+            description.readOnly = true;
+            const dueDate = task.querySelector(".taskItemDueDate");
+            dueDate.readOnly = true;
+
+            const idToEdit = task.dataset.id;
+            const taskToEdit = manager.getProject(currentProjectId).getTask(idToEdit);
+
+            taskToEdit.title = title.value;
+            taskToEdit.description = description.value;
+            taskToEdit.dueDate = dueDate.value;
+
+            const projectToRender = manager.getProject(currentProjectId);
+            const tasksToRender = projectToRender.tasks;
+            renderController(tasksToRender);
+        };
+        if(isCompletedCheckbox){
+            //find task checkbox is on
+            //access dataset id
+            //retrieve that task from project object.
+            //toggleCompletion()
+            //remove task from project view
+            //add task to "completed" section (Probably dont have to do this, just find which tasks are completed in that function)
+            //re-render the currently viewed project.            
         }
     })
-
 
     //project switching event listeners
     const projectList = document.getElementById("projectList");
     projectList.addEventListener("click", (event)=>{
-        main.innerHTML = "";
         const isProject = event.target.closest(".projectButton")
-        if(!isProject) return;
-        currentProjectId = isProject.dataset.id;
-        const projectToRender = manager.getProject(currentProjectId);
-        const tasksToRender = projectToRender.tasks;
-        renderController(tasksToRender);
+        const isRemoveBtn = event.target.closest(".removeProjectBtn");
+        if(!isProject && !isRemoveBtn) return;
+        if(isProject){
+            main.innerHTML = "";
+            currentProjectId = isProject.dataset.id;
+            const projectToRender = manager.getProject(currentProjectId);
+            const tasksToRender = projectToRender.tasks;
+            renderController(tasksToRender);
+        }
+        if(isRemoveBtn){
+            const project = event.target.closest(".projectItem");
+            const idToDelete = project.dataset.id;
+            //need to render inbox section as well if this is the current project selected
+            // if(idToDelete === currentProjectId){
+            //     renderController(inbox.tasks);
+            // }
+            manager.removeProject(idToDelete);
+            renderProjectList(manager.allProjects);
+            //what happens to this projects tasks??
+        }
     })
 }

@@ -13,4 +13,12 @@ export default class Project{
     removeTask(taskID){
         this.tasks = this.tasks.filter(task => task.id !== taskID);
     }
+
+    getTask(taskID){
+        return this.tasks.find(task => task.id === taskID);
+    }
+
+    get allTasks(){
+        return [...this.tasks];
+    }
 }
