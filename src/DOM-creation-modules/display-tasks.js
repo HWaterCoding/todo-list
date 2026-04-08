@@ -2,7 +2,7 @@
 export function renderController(tasks){
     const main = document.getElementById("main");
 
-    //might have to change length to =< 1, if "My Tasks" is hardcoded in as a project.
+    //might have to change length to =< 1, if "inbox" is hardcoded in as a project.
     if(tasks.length === 0){
         renderEmptyState(main);
     } else{
@@ -15,7 +15,7 @@ function renderEmptyState(main){
     main.innerHTML = "";
 
     const defaultMessageDiv = document.createElement("div");
-    defaultMessageDiv.id = "defaultMessageDiv";
+    defaultMessageDiv.classList.add("defaultMessageDiv");
     
     const defaultMessageH3 = document.createElement("h3");
     defaultMessageH3.textContent = "You don't have any tasks yet!";
@@ -24,27 +24,19 @@ function renderEmptyState(main){
     defaultMessageh4.textContent = "Click below to add a task or project.";
 
     const defaultButtonsContainer = document.createElement("div");
-    defaultButtonsContainer.id = "defaultButtonsContainer";
+    defaultButtonsContainer.classList.add("defaultButtonsContainer");
 
     const addTaskBtn = document.createElement("button");
-    addTaskBtn.id = "defaultAddTaskBtn";
+    addTaskBtn.classList.add("defaultAddTaskBtn");
     const addTaskIcon = document.createElement("i");
     addTaskIcon.classList.add("fa-solid", "fa-plus");
     addTaskBtn.append(addTaskIcon, "Add Tasks");
-    //addEventListener here? (Put it in ui-controller main)
-    addTaskBtn.addEventListener("click", ()=>{
-
-    });
 
     const addProjectBtn = document.createElement("button");
-    addProjectBtn.id = "defaultAddProjectBtn";
+    addProjectBtn.classList.add("defaultAddProjectBtn");
     const addProjectIcon = document.createElement("i");
     addProjectIcon.classList.add("fa-solid", "fa-plus");
     addProjectBtn.append(addProjectIcon, "Add Projects");
-    //addEventListener here? (Put it in ui-controller main)
-    addProjectBtn.addEventListener("click", ()=>{
-
-    });
 
     defaultButtonsContainer.append(addTaskBtn, addProjectBtn)
 
@@ -54,9 +46,6 @@ function renderEmptyState(main){
 
 function renderTaskList(main, tasks){
     main.innerHTML = "";
-
-    //need to add a display at the top left to indicate which project is currently active.
-
     tasks.forEach(task => {
 
         const taskItem = document.createElement("div");

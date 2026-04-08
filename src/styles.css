@@ -181,7 +181,7 @@ body {
 
 
 /* Default Main Section */
-#defaultMessageDiv{
+.defaultMessageDiv{
     background: var(--light-pink-theme);
     display: flex;
     flex-direction: column;
@@ -190,13 +190,13 @@ body {
     padding: 20px;
 }
 
-#defaultButtonsContainer{
+.defaultButtonsContainer{
     display: flex;
     justify-content: center;
     gap: 10px;
 }
 
-#defaultMessageDiv button{
+.defaultMessageDiv button{
     display: flex;
     align-items: center;
     gap: 5px;
@@ -207,19 +207,19 @@ body {
     cursor: pointer;
 }
 
-#defaultAddProjectBtn{
+.defaultAddProjectBtn{
     background-color: rgb(15, 202, 15);
 }
 
-#defaultAddProjectBtn:hover{
+.defaultAddProjectBtn:hover{
     background-color: rgb(17, 167, 17);
 }
 
-#defaultAddTaskBtn{
+.defaultAddTaskBtn{
     background: var(--salmon-theme);
 }
 
-#defaultAddTaskBtn:hover{
+.defaultAddTaskBtn:hover{
     background: var(--salmon-hover);
 }
 

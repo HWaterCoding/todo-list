@@ -10,7 +10,22 @@ export default function initApp(manager){
     let currentProjectId = "inbox";
 
     const addTaskBtnSidebar = document.getElementById("addTaskBtn");
-    addTaskBtnSidebar.addEventListener("click", ()=>{
+    addTaskBtnSidebar.addEventListener("click", addTaskToMain);
+    document.addEventListener("click", (e) => {
+        if (e.target.classList.contains("defaultAddTaskBtn")) {
+            addTaskToMain();
+        }
+    });
+
+    const addProjectBtnSidebar = document.getElementById("addProjectBtn");
+    addProjectBtnSidebar.addEventListener("click", addProjectToList);
+    document.addEventListener("click", (e) => {
+        if (e.target.classList.contains("defaultAddProjectBtn")) {
+            addProjectToList();
+        }
+    });
+
+    function addTaskToMain(){
         const doesFormExist = document.getElementById("taskForm");
         if(doesFormExist) return;
         const form = createTaskForm(manager.allProjects);
@@ -29,8 +44,22 @@ export default function initApp(manager){
             renderController(tasksToRender);
             form.taskFormModal.remove();
         }); 
-    });
+    };
 
+    function addProjectToList(){
+        const form = createProjectForm();
+        form.projectForm.addEventListener("submit", (event)=>{
+            event.preventDefault();
+            const project = new Project(
+                form.projectForm.projectTitle.value
+            );
+            manager.addProject(project);
+            renderProjectList(manager.allProjects);
+            form.projectFormOverlay.remove();
+        });
+    };
+
+    
     //inbox project display
     const inboxBtn = document.getElementById("inboxBtn");
     inboxBtn.addEventListener("click", ()=>{
@@ -79,22 +108,7 @@ export default function initApp(manager){
     });
 
 
-    const addProjectBtnSidebar = document.getElementById("addProjectBtn");
-    addProjectBtnSidebar.addEventListener("click", ()=>{
-        const form = createProjectForm();
-        form.projectForm.addEventListener("submit", (event)=>{
-            event.preventDefault();
-            const project = new Project(
-                form.projectForm.projectTitle.value
-            );
-            manager.addProject(project);
-            renderProjectList(manager.allProjects);
-            form.projectFormOverlay.remove();
-        });
-    });
-
-
-    // editTaskBtn event listeners
+    // taskItem event listeners 
     const main = document.getElementById("main");
     main.addEventListener("click", (event)=>{
         const isDeleteButton = event.target.closest(".deleteTaskBtn");
@@ -112,9 +126,10 @@ export default function initApp(manager){
         }
         if(isEditButton){
 
-            //need to prevent duplication of editTaskButtonContainer
-
             const task = event.target.closest(".taskItem");
+            const doesEditExist = document.querySelector(".editTaskButtonContainer");
+            if(doesEditExist) return;
+                
             const title = task.querySelector(".taskItemTitle");
             title.readOnly = false;
             const description = task.querySelector(".taskItemDescription");
@@ -137,10 +152,6 @@ export default function initApp(manager){
             editTaskButtonContainer.append(cancelEditBtn, saveEditBtn);
             const taskItemButtons = document.querySelector(".taskItemButtons");
             taskItemButtons.append(editTaskButtonContainer);
-
-            // task.append(editTaskButtonContainer);
-
-            //add/remove more styles with classlist.add() here to change the edit view slighty to be more defined
         }
         if(isCancelBtn){
             const projectToRender = manager.getProject(currentProjectId);
@@ -181,7 +192,6 @@ export default function initApp(manager){
             const projectToRender = manager.getProject(currentProjectId);
             const tasksToRender = projectToRender.tasks;
             renderController(tasksToRender);
-            //when we re-render we now how to filter out all completed=true tasks
         }
     })
 
