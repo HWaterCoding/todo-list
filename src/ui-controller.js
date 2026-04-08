@@ -111,6 +111,9 @@ export default function initApp(manager){
             renderController(project.tasks);
         }
         if(isEditButton){
+
+            //need to prevent duplication of editTaskButtonContainer
+
             const task = event.target.closest(".taskItem");
             const title = task.querySelector(".taskItemTitle");
             title.readOnly = false;
@@ -132,8 +135,10 @@ export default function initApp(manager){
             saveEditBtn.textContent = "Save";
             
             editTaskButtonContainer.append(cancelEditBtn, saveEditBtn);
+            const taskItemButtons = document.querySelector(".taskItemButtons");
+            taskItemButtons.append(editTaskButtonContainer);
 
-            task.append(editTaskButtonContainer);
+            // task.append(editTaskButtonContainer);
 
             //add/remove more styles with classlist.add() here to change the edit view slighty to be more defined
         }

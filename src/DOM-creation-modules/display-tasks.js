@@ -97,6 +97,9 @@ function renderTaskList(main, tasks){
         const taskItemButtons = document.createElement("div");
         taskItemButtons.classList.add("taskItemButtons");
 
+        const editAndDeleteBtn = document.createElement("div");
+        editAndDeleteBtn.classList.add("editAndDeleteBtn");
+
         const editTaskBtn = document.createElement("button");
         editTaskBtn.classList.add("editTaskBtn");
         const editTaskIcon = document.createElement("i");
@@ -109,7 +112,8 @@ function renderTaskList(main, tasks){
         deleteTaskIcon.classList.add("fa-solid", "fa-trash-can");
         deleteTaskBtn.appendChild(deleteTaskIcon);
 
-        taskItemButtons.append(editTaskBtn, deleteTaskBtn);
+        editAndDeleteBtn.append(editTaskBtn, deleteTaskBtn);
+        taskItemButtons.append(editAndDeleteBtn);
 
         taskItem.append(completedCheckbox, taskItemInfo, taskItemButtons);
         main.appendChild(taskItem);

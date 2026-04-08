@@ -1,6 +1,8 @@
 :root{
     --salmon-theme: rgb(255, 162, 151);
+    --salmon-hover: rgb(231, 134, 124);
     --light-pink-theme: rgb(255, 230, 230);
+    --light-pink-hover: rgb(245, 218, 218);
 }
 
 *, *::before, *::after {
@@ -142,11 +144,11 @@ body {
 }
 
 #addTaskBtn{
-    background-color: rgb(255, 162, 151);
+    background: var(--salmon-theme);
 }
 
 #addTaskBtn:hover{
-    background-color: rgb(255, 187, 180);
+    background: var(--salmon-hover);
 }
 
 .sidebar-btn{
@@ -161,14 +163,14 @@ body {
 }
 
 .sidebar-btn:hover{
-    background-color: rgb(245, 218, 218);
+    background: var(--light-pink-hover);
 }
 
 
 /* Main Section:: */
 
 #main{
-    background-color: rgb(255, 255, 255);
+    background-color: #ffffff;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -218,7 +220,7 @@ body {
 }
 
 #defaultAddTaskBtn:hover{
-    background-color: salmon;
+    background: var(--salmon-hover);
 }
 
 
@@ -263,6 +265,10 @@ body {
 /* style buttons for form */
 
 
+
+
+
+
 /* Task Items */
 
 .taskItem{
@@ -272,12 +278,29 @@ body {
     max-width: 100%;
     border: 1px var(--salmon-theme) solid;
     border-radius: 15px;
-    padding: 20px;
+    padding: clamp(1rem, 20px, 1.5rem) clamp(1rem, 20px, 1.5rem) 5px clamp(1rem, 20px, 1.5rem);
+    margin: 5px;
     gap: 15px;
 }
 
+.taskItem button{
+    border: none;
+    padding: 5px 10px;
+    font-weight: 800;
+    border-radius: 5px;
+}
+
+.taskItem button:hover{
+    cursor: pointer;
+}
+
 .taskItemCompleted{
+    background-color: rgb(238, 233, 233);;
     /* Change stylings here for when a task is completed (Strikethrough effect?) */
+}
+
+.taskItemCompleted .taskItemTitle{
+    text-decoration: line-through;
 }
 
 .completedCheckbox{
@@ -292,27 +315,34 @@ body {
 .taskItemInfo{
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
     gap: 5px;
     flex: 1;
 }
 
 .taskItemInfo input{
     all: unset;
-    width: 40%;
 }
 
 .taskItemButtons{
     display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.editAndDeleteBtn{
+    display: flex;
     align-items: flex-start;
+    justify-content: flex-end;
     gap: 10px;
 }
 
-.taskItemButtons button{
+.editAndDeleteBtn button{
     all: unset;
     font-size: 1.5rem;
 }
 
-.taskItemButtons button:hover{
+.editAndDeleteBtn button:hover{
     cursor: pointer;
 }
 
@@ -324,7 +354,26 @@ body {
     color: var(--salmon-theme)
 }
 
+.editTaskButtonContainer{
+    display: flex;
+    gap: 10px;
+}
 
+.cancelEditBtn{
+    background-color: rgb(209, 202, 202);
+}
+
+.cancelEditBtn:hover{
+    background-color: rgb(179, 172, 172);
+}
+
+.saveEditBtn{
+    background: var(--salmon-theme);
+}
+
+.saveEditBtn:hover{
+    background-color: rgb(231, 134, 124);
+}
 
 
 
