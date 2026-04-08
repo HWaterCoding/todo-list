@@ -164,15 +164,22 @@ export default function initApp(manager){
             renderController(tasksToRender);
         };
         if(isCompletedCheckbox){
-            //find task checkbox is on
-            //access dataset id
-            //retrieve that task from project object.
-            //toggleCompletion()
-            //remove task from project view
-            //add task to "completed" section (Probably dont have to do this, just find which tasks are completed in that function)
-            //re-render the currently viewed project.            
+            const task = event.target.closest(".taskItem");
+            const taskID = task.dataset.id;
+            const taskToComplete = manager.getProject(currentProjectId).getTask(taskID);
+            const isChecked = event.target.checked;
+            if(!isChecked){
+                taskToComplete.completed = false;
+            } else{
+                taskToComplete.completed = true;
+            }
+            const projectToRender = manager.getProject(currentProjectId);
+            const tasksToRender = projectToRender.tasks;
+            renderController(tasksToRender);
+            //when we re-render we now how to filter out all completed=true tasks
         }
     })
+
 
     //project switching event listeners
     const projectList = document.getElementById("projectList");

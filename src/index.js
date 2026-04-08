@@ -29,8 +29,10 @@ renderProjectList(manager.allProjects);
 
 
 
+//Things to do next:
 
-//Ideas:
-//When a new task is created, always add it to the "My tasks" project.
-//Have the "My Tasks" section the default project selected when a new task is created
-//When a project is selected, include it in the "My Tasks" section as well.
+//NEXT: Focus on "Inbox" vs "My Tasks" design issue and make a decision.
+
+//1) Change logic so that completed tasks arent removed from rendering, but simply have styling changed (strikethrough)
+//2) Create a filtering function for the ui-controller 
+//3) Fix duplicated rendering logic in ui-controller

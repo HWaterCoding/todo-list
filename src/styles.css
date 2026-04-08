@@ -276,6 +276,10 @@ body {
     gap: 15px;
 }
 
+.taskItemCompleted{
+    /* Change stylings here for when a task is completed (Strikethrough effect?) */
+}
+
 .completedCheckbox{
     width: 20px;
     height: 20px;

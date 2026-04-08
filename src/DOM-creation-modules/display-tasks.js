@@ -31,7 +31,7 @@ function renderEmptyState(main){
     const addTaskIcon = document.createElement("i");
     addTaskIcon.classList.add("fa-solid", "fa-plus");
     addTaskBtn.append(addTaskIcon, "Add Tasks");
-    //addEventListener here?
+    //addEventListener here? (Put it in ui-controller main)
     addTaskBtn.addEventListener("click", ()=>{
 
     });
@@ -41,7 +41,7 @@ function renderEmptyState(main){
     const addProjectIcon = document.createElement("i");
     addProjectIcon.classList.add("fa-solid", "fa-plus");
     addProjectBtn.append(addProjectIcon, "Add Projects");
-    //addEventListener here?
+    //addEventListener here? (Put it in ui-controller main)
     addProjectBtn.addEventListener("click", ()=>{
 
     });
@@ -65,7 +65,11 @@ function renderTaskList(main, tasks){
 
         const completedCheckbox = document.createElement("input")
         completedCheckbox.type = "checkbox";
+        completedCheckbox.checked = task.completed;
         completedCheckbox.classList.add("completedCheckbox");
+        if(task.completed){
+            taskItem.classList.add("taskItemCompleted");
+        } 
 
         const taskItemInfo = document.createElement("div");
         taskItemInfo.classList.add("taskItemInfo");
