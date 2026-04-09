@@ -29,6 +29,10 @@ renderProjectList(manager.allProjects);
 
 //Things to do next:
 
-//NEXT: Focus on "Inbox" vs "My Tasks" design issue and make a decision.
-
-//2) Create a filtering function for the ui-controller 
+//1) Add a "taskList" div in main to append tasks instead of directly to main
+//2) put the sort feature on the right side of main
+//3) put a "current Project" h1 on the left side of main to display current project on
+//4) Style the project buttons correctly in the project list and add an "active" feautre to reflect which project is active
+//5) Wire the "My Tasks" section properly so that it gathers all tasks and displays them properly.
+//6) Make it so that if the current project is deleted, render the inbox project instead.
+//7) 
