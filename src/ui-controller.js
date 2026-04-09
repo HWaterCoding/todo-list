@@ -17,7 +17,13 @@ export default function initApp(manager){
     function addTaskToMain(){
         const doesFormExist = document.getElementById("taskForm");
         if(doesFormExist) return;
+
+        const emptyStateMsg = document.querySelector(".defaultMessageDiv");
+        if(emptyStateMsg){ emptyStateMsg.remove() };
+
         const form = createTaskForm(manager.allProjects, manager.defaultProjectID);
+        form.taskForm.taskTitle.focus();
+        
         form.taskForm.addEventListener("submit", (event)=>{
             event.preventDefault();
             const task = new Task(
@@ -28,9 +34,15 @@ export default function initApp(manager){
             );
             let projectID = form.taskForm.projectSelector.value;
             manager.addTaskToProject(projectID, task);
-            renderCurrentProject();
             form.taskFormModal.remove();
-        }); 
+            renderCurrentProject();
+        });
+
+        const cancelFormBtn = form.taskForm.querySelector(".cancelTaskBtn");
+        cancelFormBtn.addEventListener("click", ()=>{
+            form.taskFormModal.remove();
+            renderCurrentProject();
+        })
     };
 
     function addProjectToList(){
@@ -121,10 +133,10 @@ export default function initApp(manager){
     main.addEventListener("click", (event)=>{
         const isDeleteButton = event.target.closest(".deleteTaskBtn");
         const isEditButton = event.target.closest(".editTaskBtn");
-        const isCancelBtn = event.target.closest(".cancelEditBtn");
-        const isSaveBtn = event.target.closest(".saveEditBtn");
+        const isCancelEditBtn = event.target.closest(".cancelEditBtn");
+        const isSaveEditBtn = event.target.closest(".saveEditBtn");
         const isCompletedCheckbox = event.target.closest(".completedCheckbox");
-        if(!isDeleteButton && !isEditButton && !isCancelBtn && !isSaveBtn && !isCompletedCheckbox) return;
+        if(!isDeleteButton && !isEditButton && !isCancelEditBtn && !isSaveEditBtn && !isCompletedCheckbox) return;
         if(isDeleteButton){
             const task = event.target.closest(".taskItem");
             const idToDelete = task.dataset.id;
@@ -161,10 +173,10 @@ export default function initApp(manager){
             const taskItemButtons = document.querySelector(".taskItemButtons");
             taskItemButtons.append(editTaskButtonContainer);
         }
-        if(isCancelBtn){
+        if(isCancelEditBtn){
             renderCurrentProject();
         };
-        if(isSaveBtn){
+        if(isSaveEditBtn){
             const task = event.target.closest(".taskItem");
 
             const title = task.querySelector(".taskItemTitle");

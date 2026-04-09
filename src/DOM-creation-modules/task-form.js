@@ -4,6 +4,7 @@ export default function createTaskForm(projects, defaultProjectID){
 
     const taskFormModal = document.createElement("div");
     taskFormModal.id = "taskFormModal";
+    taskFormModal.classList.add("taskFormModal");
     main.appendChild(taskFormModal);
 
     const taskForm = document.createElement("form");
@@ -71,16 +72,16 @@ export default function createTaskForm(projects, defaultProjectID){
     }
 
     const cancelTaskBtn = document.createElement("button");
+    cancelTaskBtn.type = "button";
     cancelTaskBtn.textContent = "Cancel";
-    cancelTaskBtn.id = "cancelTaskBtn";
-    cancelTaskBtn.addEventListener("click", ()=>{
-        taskFormModal.remove();
-    });
+    cancelTaskBtn.classList.add("cancelTaskBtn");
+    // cancelTaskBtn.id = "cancelTaskBtn";
 
     const submitFormBtn = document.createElement("button");
     submitFormBtn.type = "submit";
     submitFormBtn.textContent = "Add Task";
-    submitFormBtn.id = "submitFormBtn";
+    submitFormBtn.classList.add("submitFormBtn");
+    // submitFormBtn.id = "submitFormBtn";
 
     formBox2.append(projectSelector, cancelTaskBtn, submitFormBtn);
 

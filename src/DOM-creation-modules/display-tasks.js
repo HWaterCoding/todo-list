@@ -1,8 +1,8 @@
 //renderController to be exported and run, renderEmptyState and renderTaskList depending on data state
 export function renderController(tasks){
     const main = document.getElementById("main");
+    main.innerHTML = "";
 
-    //might have to change length to =< 1, if "inbox" is hardcoded in as a project.
     if(tasks.length === 0){
         renderEmptyState(main);
     } else{
@@ -11,8 +11,6 @@ export function renderController(tasks){
 }
 
 function renderEmptyState(main){
-
-    main.innerHTML = "";
 
     const defaultMessageDiv = document.createElement("div");
     defaultMessageDiv.classList.add("defaultMessageDiv");
@@ -45,7 +43,6 @@ function renderEmptyState(main){
 }
 
 function renderTaskList(main, tasks){
-    main.innerHTML = "";
     tasks.forEach(task => {
 
         const taskItem = document.createElement("div");
@@ -79,6 +76,7 @@ function renderTaskList(main, tasks){
         taskItemDueDate.classList.add("taskItemDueDate");
         taskItemDueDate.type = "date";
         taskItemDueDate.value = task.dueDate;
+        //put in a check so that if no date is selected, don't display mm/dd/yyyy, display nothing
         taskItemDueDate.readOnly = "true";
         
         taskItemInfo.append(taskItemTitle, taskItemDescription, taskItemDueDate);
