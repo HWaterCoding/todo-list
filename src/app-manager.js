@@ -5,6 +5,9 @@ export default class AppManager{
     constructor(){
         //might have to add "Inbox hardcoded as a default project"
         this.projects = [];
+        const inbox = new Project("Inbox");
+        this.projects.push(inbox);
+        this.inboxProjectId = inbox.id;
     }
 
     // static sortTasks = {
@@ -32,5 +35,9 @@ export default class AppManager{
     
     get allProjects(){
         return [...this.projects];
+    }
+
+    get defaultProjectID(){
+        return this.inboxProjectId;
     }
 }

@@ -1,4 +1,4 @@
-export default function createTaskForm(projects){
+export default function createTaskForm(projects, defaultProjectID){
 
     const main = document.getElementById("main");
 
@@ -60,14 +60,12 @@ export default function createTaskForm(projects){
     //Or, just make it so when someone clicks off the taskform, it closes. Easier, better design. <-- do this
     const projectSelector = document.createElement("select");
     projectSelector.id = "projectSelector";
-    const defaultProjectOption = document.createElement("option");
-    defaultProjectOption.textContent = "Inbox (default)";
-    defaultPriorityOption.value = "Inbox";
-    defaultProjectOption.selected = true;
-    projectSelector.appendChild(defaultProjectOption);
     for(const project of projects){
         const projectOption = document.createElement("option");
         projectOption.textContent = project.name;
+        if(project.id === defaultProjectID){
+            projectOption.textContent = "Inbox (default)";
+        }
         projectOption.value = project.id;
         projectSelector.appendChild(projectOption);
     }

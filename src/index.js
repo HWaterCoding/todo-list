@@ -11,8 +11,6 @@ import Project from "./project.js";
 //On page load we will render the "My Tasks" list that's stored.
 
 const manager = new AppManager();
-const project = new Project("Inbox");
-manager.addProject(project);
 initApp(manager);
 
 
@@ -33,6 +31,4 @@ renderProjectList(manager.allProjects);
 
 //NEXT: Focus on "Inbox" vs "My Tasks" design issue and make a decision.
 
-//1) Change logic so that completed tasks arent removed from rendering, but simply have styling changed (strikethrough)
 //2) Create a filtering function for the ui-controller 
-//3) Fix duplicated rendering logic in ui-controller

@@ -6,8 +6,50 @@ import { renderController, renderProjectList } from "./DOM-creation-modules/disp
 
 export default function initApp(manager){
 
-    //this needs to change from null to the id for inbox section
-    let currentProjectId = "inbox";
+    let currentProjectId = manager.defaultProjectID;
+
+    function renderCurrentProject(){
+        const projectToRender = manager.getProject(currentProjectId);
+        const tasksToRender = projectToRender.tasks;
+        renderController(tasksToRender);
+    }
+
+    function addTaskToMain(){
+        const doesFormExist = document.getElementById("taskForm");
+        if(doesFormExist) return;
+        const form = createTaskForm(manager.allProjects, manager.defaultProjectID);
+        form.taskForm.addEventListener("submit", (event)=>{
+            event.preventDefault();
+            const task = new Task(
+                form.taskForm.taskTitle.value,
+                form.taskForm.taskDescription.value,
+                form.taskForm.dueDate.value,
+                form.taskForm.prioritySelector.value,
+            );
+            let projectID = form.taskForm.projectSelector.value;
+            manager.addTaskToProject(projectID, task);
+            renderCurrentProject();
+            form.taskFormModal.remove();
+        }); 
+    };
+
+    function addProjectToList(){
+        const doesTaskFormExist = document.getElementById("taskFormModal");
+        if(doesTaskFormExist){
+            doesTaskFormExist.remove();
+        }
+        //add a check to not add inbox project to list!
+        const form = createProjectForm();
+        form.projectForm.addEventListener("submit", (event)=>{
+            event.preventDefault();
+            const project = new Project(
+                form.projectForm.projectTitle.value
+            );
+            manager.addProject(project);
+            renderProjectList(manager.allProjects);
+            form.projectFormOverlay.remove();
+        });
+    };
 
     const addTaskBtnSidebar = document.getElementById("addTaskBtn");
     addTaskBtnSidebar.addEventListener("click", addTaskToMain);
@@ -25,45 +67,11 @@ export default function initApp(manager){
         }
     });
 
-    function addTaskToMain(){
-        const doesFormExist = document.getElementById("taskForm");
-        if(doesFormExist) return;
-        const form = createTaskForm(manager.allProjects);
-        form.taskForm.addEventListener("submit", (event)=>{
-            event.preventDefault();
-            const task = new Task(
-                form.taskForm.taskTitle.value,
-                form.taskForm.taskDescription.value,
-                form.taskForm.dueDate.value,
-                form.taskForm.prioritySelector.value,
-            );
-            let projectID = form.taskForm.projectSelector.value;
-            manager.addTaskToProject(projectID, task);
-            const projectToRender = manager.getProject(currentProjectId);
-            const tasksToRender = projectToRender.tasks;
-            renderController(tasksToRender);
-            form.taskFormModal.remove();
-        }); 
-    };
-
-    function addProjectToList(){
-        const form = createProjectForm();
-        form.projectForm.addEventListener("submit", (event)=>{
-            event.preventDefault();
-            const project = new Project(
-                form.projectForm.projectTitle.value
-            );
-            manager.addProject(project);
-            renderProjectList(manager.allProjects);
-            form.projectFormOverlay.remove();
-        });
-    };
-
-    
     //inbox project display
     const inboxBtn = document.getElementById("inboxBtn");
     inboxBtn.addEventListener("click", ()=>{
-
+        currentProjectId = manager.defaultProjectID;
+        renderCurrentProject();
     });
 
     //  //My Tasks main tab switching and task display
@@ -154,9 +162,7 @@ export default function initApp(manager){
             taskItemButtons.append(editTaskButtonContainer);
         }
         if(isCancelBtn){
-            const projectToRender = manager.getProject(currentProjectId);
-            const tasksToRender = projectToRender.tasks;
-            renderController(tasksToRender);
+            renderCurrentProject();
         };
         if(isSaveBtn){
             const task = event.target.closest(".taskItem");
@@ -175,9 +181,7 @@ export default function initApp(manager){
             taskToEdit.description = description.value;
             taskToEdit.dueDate = dueDate.value;
 
-            const projectToRender = manager.getProject(currentProjectId);
-            const tasksToRender = projectToRender.tasks;
-            renderController(tasksToRender);
+            renderCurrentProject();
         };
         if(isCompletedCheckbox){
             const task = event.target.closest(".taskItem");
@@ -189,12 +193,9 @@ export default function initApp(manager){
             } else{
                 taskToComplete.completed = true;
             }
-            const projectToRender = manager.getProject(currentProjectId);
-            const tasksToRender = projectToRender.tasks;
-            renderController(tasksToRender);
+            renderCurrentProject();
         }
     })
-
 
     //project switching event listeners
     const projectList = document.getElementById("projectList");
@@ -205,9 +206,7 @@ export default function initApp(manager){
         if(isProject){
             main.innerHTML = "";
             currentProjectId = isProject.dataset.id;
-            const projectToRender = manager.getProject(currentProjectId);
-            const tasksToRender = projectToRender.tasks;
-            renderController(tasksToRender);
+            renderCurrentProject();
         }
         if(isRemoveBtn){
             const project = event.target.closest(".projectItem");
@@ -218,6 +217,9 @@ export default function initApp(manager){
             // }
             manager.removeProject(idToDelete);
             renderProjectList(manager.allProjects);
+            // need to reset the currentProjectId to the default inbox section then re-render.
+            currentProjectId = manager.defaultProjectID;
+            renderCurrentProject();
             //what happens to this projects tasks??
         }
     })
