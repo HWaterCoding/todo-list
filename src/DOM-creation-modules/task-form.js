@@ -1,11 +1,11 @@
 export default function createTaskForm(projects, defaultProjectID){
 
-    const main = document.getElementById("main");
+    const taskArea = document.getElementById("taskArea");
 
     const taskFormModal = document.createElement("div");
     taskFormModal.id = "taskFormModal";
     taskFormModal.classList.add("taskFormModal");
-    main.appendChild(taskFormModal);
+    taskArea.appendChild(taskFormModal);
 
     const taskForm = document.createElement("form");
     taskForm.id = "taskForm";
@@ -75,13 +75,11 @@ export default function createTaskForm(projects, defaultProjectID){
     cancelTaskBtn.type = "button";
     cancelTaskBtn.textContent = "Cancel";
     cancelTaskBtn.classList.add("cancelTaskBtn");
-    // cancelTaskBtn.id = "cancelTaskBtn";
 
     const submitFormBtn = document.createElement("button");
     submitFormBtn.type = "submit";
     submitFormBtn.textContent = "Add Task";
     submitFormBtn.classList.add("submitFormBtn");
-    // submitFormBtn.id = "submitFormBtn";
 
     formBox2.append(projectSelector, cancelTaskBtn, submitFormBtn);
 

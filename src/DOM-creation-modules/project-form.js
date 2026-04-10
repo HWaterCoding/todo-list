@@ -33,13 +33,13 @@ export default function createProjectForm(){
     const submitProjectBtn = document.createElement("button");
     submitProjectBtn.type = "submit";
     submitProjectBtn.textContent = "Submit Project";
+    submitProjectBtn.classList.add("submitProjectBtn");
     submitProjectBtn.id = "submitProjectBtn";
     
     const cancelProjectBtn = document.createElement("button");
+    cancelProjectBtn.type = "button";
+    cancelProjectBtn.classList.add("cancelProjectBtn");
     cancelProjectBtn.textContent = "Cancel Project";
-    cancelProjectBtn.addEventListener("click", ()=>{
-        projectFormOverlay.remove();
-    });
 
     projectBtnContainer.append(submitProjectBtn, cancelProjectBtn);
     projectForm.append(projectTitle, projectBtnContainer);

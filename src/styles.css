@@ -3,6 +3,8 @@
     --salmon-hover: rgb(231, 134, 124);
     --light-pink-theme: rgb(255, 230, 230);
     --light-pink-hover: rgb(245, 218, 218);
+    --grey-theme: rgb(209, 202, 202);
+    --grey-hover: rgb(179, 172, 172);
 }
 
 *, *::before, *::after {
@@ -172,11 +174,19 @@ body {
 #main{
     background-color: #ffffff;
     display: flex;
+    justify-content: flex-start;
+    padding: clamp(1rem, 20px, 1.5rem);
+}
+
+/* fix so this doesn't move when a project name changes */
+#taskArea{
+    background-color: #ffffff;
+    display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
     padding: clamp(1rem, 20px, 1.5rem);
-    /* Will need to re-apply gap here as well */
+    flex: 1;
 }
 
 
@@ -228,15 +238,11 @@ body {
 #taskFormModal{
     background: var(--light-pink-theme);
     padding: clamp(1rem, 20px, 1.5rem) clamp(1rem, 20px, 1.5rem) 0 clamp(1rem, 20px, 1.5rem);
-    width: 60%;
+    width: 90%;
     max-width: 100%;
     border: 1px var(--salmon-theme) solid;
     border-radius: 15px;
 }
-
-/* #taskForm{
-    
-} */
 
 #formBox1{
     display: flex;
@@ -262,10 +268,30 @@ body {
     padding: 10px 5px 5px 5px;
 }
 
-/* style buttons for form */
+#formBox2 button{
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-weight: 800;
+}
+
+.submitFormBtn{
+    background: var(--salmon-theme);
+}
+
+.submitFormBtn:hover{
+    background: var(--salmon-hover);
+}
+
+.cancelTaskBtn{
+    background: var(--grey-theme);
+}
 
 
-
+.cancelTaskBtn:hover{
+    background: var(--grey-hover);
+}
 
 
 
@@ -274,7 +300,7 @@ body {
 .taskItem{
     display: flex;
     background-color: var(--light-pink-theme);
-    width: 60%;
+    width: 90%;
     max-width: 100%;
     border: 1px var(--salmon-theme) solid;
     border-radius: 15px;
@@ -360,11 +386,11 @@ body {
 }
 
 .cancelEditBtn{
-    background-color: rgb(209, 202, 202);
+    background: var(--grey-theme);
 }
 
 .cancelEditBtn:hover{
-    background-color: rgb(179, 172, 172);
+    background: var(--grey-hover);
 }
 
 .saveEditBtn{

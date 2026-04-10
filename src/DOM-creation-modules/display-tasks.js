@@ -1,16 +1,16 @@
 //renderController to be exported and run, renderEmptyState and renderTaskList depending on data state
 export function renderController(tasks){
-    const main = document.getElementById("main");
-    main.innerHTML = "";
+    const taskArea = document.getElementById("taskArea");
+    taskArea.innerHTML = "";
 
     if(tasks.length === 0){
-        renderEmptyState(main);
+        renderEmptyState(taskArea);
     } else{
-        renderTaskList(main, tasks);
+        renderTaskList(taskArea, tasks);
     }
 }
 
-function renderEmptyState(main){
+function renderEmptyState(taskArea){
 
     const defaultMessageDiv = document.createElement("div");
     defaultMessageDiv.classList.add("defaultMessageDiv");
@@ -39,10 +39,10 @@ function renderEmptyState(main){
     defaultButtonsContainer.append(addTaskBtn, addProjectBtn)
 
     defaultMessageDiv.append(defaultMessageH3, defaultMessageh4, defaultButtonsContainer);
-    main.appendChild(defaultMessageDiv);
+    taskArea.appendChild(defaultMessageDiv);
 }
 
-function renderTaskList(main, tasks){
+function renderTaskList(taskArea, tasks){
     tasks.forEach(task => {
 
         const taskItem = document.createElement("div");
@@ -103,7 +103,7 @@ function renderTaskList(main, tasks){
         taskItemButtons.append(editAndDeleteBtn);
 
         taskItem.append(completedCheckbox, taskItemInfo, taskItemButtons);
-        main.appendChild(taskItem);
+        taskArea.appendChild(taskItem);
     });
 }
 

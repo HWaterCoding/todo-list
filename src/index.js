@@ -29,10 +29,14 @@ renderProjectList(manager.allProjects);
 
 //Things to do next:
 
-//1) Add a "taskList" div in main to append tasks instead of directly to main
-//2) put the sort feature on the right side of main
-//3) put a "current Project" h1 on the left side of main to display current project on
+//next: make the current project h1 update dynamically with selected project.
+
+//4) Fix the <main> or <taskList> section so that it's scrollable to accomodate new task items appended.
+
 //4) Style the project buttons correctly in the project list and add an "active" feautre to reflect which project is active
 //5) Wire the "My Tasks" section properly so that it gathers all tasks and displays them properly.
 //6) Make it so that if the current project is deleted, render the inbox project instead.
-//7) 
+//7) filter through all tasks in the completed event listener to display only completed tasks.
+
+
+//8)  go through all modules and slowly start fixing every single commented piece of code that needs attention

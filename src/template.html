@@ -32,15 +32,6 @@
             <header id="header">
                 <h1>Welcome to To-Due</h1>
                 <div id="header-options">
-                    <select>
-                        <option>Sort Tasks By:</option>
-                        <option>Alphabetical (A-Z)</option>
-                        <option>Alphabetical (Z-A)</option>
-                        <option>Due Date</option>
-                        <option>Recent Tasks</option>
-                        <option>Priority (High-Low)</option>
-                        <option>Priority (Low-High)</option>
-                    </select>
                     <button class="header-btn"><i class="fa-solid fa-bell"></i></button>
                     <button class="header-btn"><i class="fa-solid fa-gear"></i></button>
                     <button class="header-btn" id="themeSwitcher">
@@ -104,11 +95,21 @@
             </aside>
     
             <main id="main">
-                <!-- <h1>Current task</h1> -->
-                <!-- <div id="taskArea">
+                <h1 id="currentProjectLabel">Current project</h1> 
+                <div id="taskArea">
 
-                </div> -->
-                <!-- <h1>Sort stuff</h1> -->
+                </div>
+                <div id="sortOptions">
+                    <select id="sortTasks">
+                        <option value="">Sort Tasks By:</option>
+                        <option value="a2z">Alphabetical (A-Z)</option>
+                        <option value="z2a">Alphabetical (Z-A)</option>
+                        <option value="duedate">Due Date</option>
+                        <option value="recent">Recent Tasks</option>
+                        <option value="h2l">Priority (High-Low)</option>
+                        <option value="l2h">Priority (Low-High)</option>
+                    </select>
+                </div>
             </main>
 
 

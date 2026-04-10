@@ -7,6 +7,13 @@ import { renderController, renderProjectList } from "./DOM-creation-modules/disp
 export default function initApp(manager){
 
     let currentProjectId = manager.defaultProjectID;
+    renderProjectLabel();
+
+    function renderProjectLabel(){
+        const projectLabel = manager.getProject(currentProjectId);
+        const currentProjectLabel = document.getElementById("currentProjectLabel");
+        currentProjectLabel.textContent = projectLabel.name;
+    }
 
     function renderCurrentProject(){
         const projectToRender = manager.getProject(currentProjectId);
@@ -23,7 +30,7 @@ export default function initApp(manager){
 
         const form = createTaskForm(manager.allProjects, manager.defaultProjectID);
         form.taskForm.taskTitle.focus();
-        
+
         form.taskForm.addEventListener("submit", (event)=>{
             event.preventDefault();
             const task = new Task(
@@ -60,6 +67,12 @@ export default function initApp(manager){
             manager.addProject(project);
             renderProjectList(manager.allProjects);
             form.projectFormOverlay.remove();
+        });
+
+        const cancelProjectBtn = form.projectForm.querySelector(".cancelProjectBtn")
+        cancelProjectBtn.addEventListener("click", ()=>{
+            form.projectFormOverlay.remove();
+            renderCurrentProject(manager.allProjects);
         });
     };
 
@@ -129,8 +142,8 @@ export default function initApp(manager){
 
 
     // taskItem event listeners 
-    const main = document.getElementById("main");
-    main.addEventListener("click", (event)=>{
+    const taskArea = document.getElementById("taskArea");
+    taskArea.addEventListener("click", (event)=>{
         const isDeleteButton = event.target.closest(".deleteTaskBtn");
         const isEditButton = event.target.closest(".editTaskBtn");
         const isCancelEditBtn = event.target.closest(".cancelEditBtn");
@@ -216,9 +229,10 @@ export default function initApp(manager){
         const isRemoveBtn = event.target.closest(".removeProjectBtn");
         if(!isProject && !isRemoveBtn) return;
         if(isProject){
-            main.innerHTML = "";
+            taskArea.innerHTML = "";
             currentProjectId = isProject.dataset.id;
             renderCurrentProject();
+            renderProjectLabel();
         }
         if(isRemoveBtn){
             const project = event.target.closest(".projectItem");
