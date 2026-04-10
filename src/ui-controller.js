@@ -10,9 +10,9 @@ export default function initApp(manager){
     renderProjectLabel();
 
     function renderProjectLabel(){
-        const projectLabel = manager.getProject(currentProjectId);
+        const project = manager.getProject(currentProjectId);
         const currentProjectLabel = document.getElementById("currentProjectLabel");
-        currentProjectLabel.textContent = projectLabel.name;
+        currentProjectLabel.textContent = project.name;
     }
 
     function renderCurrentProject(){
@@ -92,52 +92,55 @@ export default function initApp(manager){
         }
     });
 
-    //inbox project display
     const inboxBtn = document.getElementById("inboxBtn");
     inboxBtn.addEventListener("click", ()=>{
         currentProjectId = manager.defaultProjectID;
         renderCurrentProject();
+        renderProjectLabel();
     });
 
-    //  //My Tasks main tab switching and task display
+    //My Tasks main tab switching and task display
     const myTasksBtn = document.getElementById("myTasksBtn")
     myTasksBtn.addEventListener("click", ()=>{
-        //create empty array
         let tasks = [];
 
         const projects = manager.allProjects;
 
         for(const project of projects){
-
+            const projectTasks = project.allTasks;
+            tasks.push(...projectTasks);
         }
-        //use allProjects to retrieve each project array
 
-        //use a for of loop to go through each project array and extract all tasks in each project.
-        
-        //store every task in empty array above
-       
-        //append each task as it's own taskItem.
-
-        //sort them in a specific order (probably by newest to oldest)
-        
-        //set currentProjectId to "all" or something 
-
-        //My Tasks should not be an actual project, just a compiled view of every task that currently exists.
+        renderController(tasks);
+        const currentProjectLabel = document.getElementById("currentProjectLabel");
+        currentProjectLabel.textContent = "My Tasks";
     });
 
-
-    // //search tasks button (look up all tasks by title?)
+    //search tasks button (look up all tasks by title?)
     const searchBtn = document.getElementById("searchBtn")
     searchBtn.addEventListener("click", ()=>{
 
     });
 
-    // //completed tasks switching and display
+    //completed tasks switching and display
     const completedTasksBtn = document.getElementById("completedBtn");
     completedTasksBtn.addEventListener("click", ()=>{
-        // go through all tasks similar to the My Tasks area
-        // Only retrieve tasks with completed === true
-        // display all tasks and slightly altar display(strikethrough or something)
+        let tasks = [];
+
+        const projects = manager.allProjects;
+
+        for(const project of projects){
+            const projectTasks = project.allTasks;
+            for(let i = 0; i < projectTasks.length; i++){
+                if(projectTasks[i].completed === true){
+                    tasks.push(projectTasks[i]);
+                }
+            }
+        }
+
+        renderController(tasks);
+        const currentProjectLabel = document.getElementById("currentProjectLabel");
+        currentProjectLabel.textContent = "Completed";
     });
 
 
@@ -246,7 +249,8 @@ export default function initApp(manager){
             // need to reset the currentProjectId to the default inbox section then re-render.
             currentProjectId = manager.defaultProjectID;
             renderCurrentProject();
-            //what happens to this projects tasks??
+            renderProjectLabel();
+            //what happens to the removed projects tasks??
         }
     })
 }
