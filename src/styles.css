@@ -41,18 +41,22 @@ h1, h2, h3, h4, h5, h6 {
     text-wrap: balance;
 }
 
+html,
+body{
+    height: 100%;
+}
+
 body {
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
-    height: 100vh;
     display: grid;
     grid-template-columns: 1fr 5fr;
     grid-template-rows: 1fr 7fr;
+    overflow: hidden;
 }
 
 
 /* Header Section:: */
-
 #header{
     background: var(--salmon-theme);
     grid-row: 1/2;
@@ -84,7 +88,6 @@ body {
 
 
 /* Sidebar Section:: */
-
 #sidebar{
     background: var(--light-pink-theme);
     grid-row: 1/4;
@@ -169,25 +172,66 @@ body {
 }
 
 
-/* Main Section:: */
 
-#main{
-    background-color: #ffffff;
-    display: flex;
-    justify-content: flex-start;
+/* Main Section:: */
+#main {
+    display: grid;
+    grid-template-columns: 1fr minmax(0, 1200px) 1fr;
+    align-items: start;
+    height: 100%;
+    min-height: 0;
     padding: clamp(1rem, 20px, 1.5rem);
 }
 
-/* fix so this doesn't move when a project name changes */
-#taskArea{
+#taskArea {
+    background: var(--salmon-theme);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: clamp(1rem, 20px, 1.5rem);
+    overflow-y: auto;
+    height: 100%;
+    min-height: 0;
+    margin: 0 20px;
+}
+
+/* #main{
     background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    padding: clamp(1rem, 20px, 1.5rem);
+    height: 100%;
+    min-height: 0;
+} */
+
+/* #taskArea{
+    background: var(--salmon-theme);
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
     padding: clamp(1rem, 20px, 1.5rem);
     flex: 1;
+    overflow-y: auto;
+    min-height: 0;
+    margin: 0 20px;
+} */
+
+#currentProjectLabel {
+    grid-column: 1;
+    justify-self: start;
 }
+
+#taskArea {
+    grid-column: 2;
+}
+
+#sortOptions {
+    grid-column: 3;
+    justify-self: center;
+}
+
+
 
 
 /* Default Main Section */
@@ -296,7 +340,6 @@ body {
 
 
 /* Task Items */
-
 .taskItem{
     display: flex;
     background-color: var(--light-pink-theme);
@@ -404,7 +447,6 @@ body {
 
 
 /* Create Project Form */
-
 #projectFormOverlay{
     background-color: rgba(167, 164, 164, 0.719);
     position: absolute;
