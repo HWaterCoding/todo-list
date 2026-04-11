@@ -31,34 +31,35 @@ export default function createTaskForm(projects, defaultProjectID){
     const dueDate = document.createElement("input");
     dueDate.id = "dueDate";
     dueDate.type = "date";
-    // dueDate.placeholder = Date.now();
 
     const prioritySelector = document.createElement("select");
+    prioritySelector.classList.add("prioritySelector");
     prioritySelector.id = "prioritySelector";
-    // prioritySelector.required = "true";
     const defaultPriorityOption = document.createElement("option");
     defaultPriorityOption.value = "";
     defaultPriorityOption.textContent = "Priority";
     defaultPriorityOption.hidden = true;
+
     const highOption = document.createElement("option");
-    highOption.textContent = "High";
     highOption.value = "highPriority";
+    highOption.textContent = "High";
+
     const mediumOption = document.createElement("option");
-    mediumOption.textContent = "Medium";
     mediumOption.value = "mediumPriority";
+    mediumOption.textContent = "Medium";
+
     const lowOption = document.createElement("option");
-    lowOption.textContent = "Low";
     lowOption.value = "lowPriority";
+    lowOption.textContent = "Low";
+
     prioritySelector.append(defaultPriorityOption, highOption, mediumOption, lowOption);
 
-    selectionBox.append(prioritySelector, dueDate); //append calendar/date picker
+    selectionBox.append(prioritySelector, dueDate);
     formBox1.append(taskTitle, taskDescription, selectionBox);
 
     const formBox2 = document.createElement("div");
     formBox2.id = "formBox2";
 
-    //IF a user opens the form, adds a project, then comes back to form, this needs to update.
-    //Or, just make it so when someone clicks off the taskform, it closes. Easier, better design. <-- do this
     const projectSelector = document.createElement("select");
     projectSelector.id = "projectSelector";
     for(const project of projects){

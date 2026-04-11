@@ -1,4 +1,3 @@
-//main module to import and initialize app
 import "./styles.css";
 
 import Task from "./task.js";
@@ -8,18 +7,14 @@ import initApp from "./ui-controller.js";
 import Project from "./project.js";
 
 
-//On page load we will render the "My Tasks" list that's stored.
-
 const manager = new AppManager();
 initApp(manager);
-
 
 window.Task = Task;
 window.manager = manager;
 
 
 //will remove this, just for accessibility testing
-// renderController([]);
 const testProject = new Project("Test Project");
 manager.addProject(testProject);
 renderProjectList(manager.allProjects);
@@ -32,11 +27,24 @@ for(let i = 0; i < 20; i++){
 renderController(testProject);
 
 
+
+
 //Things to do next:
-// fix that the projectLabel shifts the elements.
+
+//When a user selects a priority, change the border of the taskItem as well as the checkbox color to the theme
+//Add priority selector element to the edited task as well. it disappears.
 
 
-//ADD IN PRIORITY LOGIC TO THE TASKS!!!
+
+
+//THERE'S A BUG WHEN CLICKING EDITTASK BUTTON IT APPENDS TO WRONG TASK??
+//THERE'S ALSO A BUG WITH INPUT FIELDS ON TASKITEMS BEING WAY TOO SMALL???
+
+
+
+
+
+
 //REMOVE "INBOX" FROM THE PROJECTLIST ON THE SIDE SO THAT IT CANNOT BE DELETED!
 
 //4) Style the project buttons correctly in the project list and add an "active" feautre to reflect which project is active

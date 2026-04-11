@@ -184,7 +184,7 @@ body {
 }
 
 #taskArea {
-    background: var(--salmon-theme);
+    /* background: var(--salmon-theme); */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -195,31 +195,9 @@ body {
     margin: 0 20px;
 }
 
-/* #main{
-    background-color: #ffffff;
-    display: flex;
-    justify-content: center;
-    padding: clamp(1rem, 20px, 1.5rem);
-    height: 100%;
-    min-height: 0;
-} */
-
-/* #taskArea{
-    background: var(--salmon-theme);
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    padding: clamp(1rem, 20px, 1.5rem);
-    flex: 1;
-    overflow-y: auto;
-    min-height: 0;
-    margin: 0 20px;
-} */
-
 #currentProjectLabel {
     grid-column: 1;
-    justify-self: start;
+    justify-self: center;
 }
 
 #taskArea {
@@ -393,6 +371,11 @@ body {
     all: unset;
 }
 
+.taskItemSelectionBox{
+    display: flex;
+    gap: 15px;
+}
+
 .taskItemButtons{
     display: flex;
     flex-direction: column;
@@ -481,3 +464,49 @@ body {
     display: flex;
     gap: 10px;
 }
+
+
+
+
+
+
+
+
+/* Priority CSS */
+select:hover{
+    cursor: pointer;
+}
+
+.prioritySelector option{
+    color: white;
+    text-align: center;
+}
+
+.prioritySelector option:nth-child(2){
+    background-color: red;
+}
+
+.prioritySelector option:nth-child(3){
+    background-color: blue;
+}
+
+.prioritySelector option:nth-child(4){
+    background-color: green;
+}
+
+.taskItem.highPriority{
+    border: 1px solid red;
+    box-shadow: 0px 0px 10px rgb(255, 61, 61);
+}
+
+.taskItem.mediumPriority{
+    border: 1px solid blue;
+    box-shadow: 0px 0px 10px rgb(94, 94, 255);
+}
+
+.taskItem.lowPriority{
+    border: 1px solid rgb(102, 255, 102);
+    box-shadow: 0px 0px 10px rgb(71, 231, 71);
+}
+
+/* Add checkbox stylings as well based on priority */

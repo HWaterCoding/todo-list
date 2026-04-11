@@ -7,7 +7,9 @@ import { renderController, renderProjectList } from "./DOM-creation-modules/disp
 export default function initApp(manager){
 
     let currentProjectId = manager.defaultProjectID;
+    renderCurrentProject();
     renderProjectLabel();
+    
 
     function renderProjectLabel(){
         const project = manager.getProject(currentProjectId);
@@ -15,22 +17,22 @@ export default function initApp(manager){
         currentProjectLabel.textContent = project.name;
     }
 
+
     function renderCurrentProject(){
         const projectToRender = manager.getProject(currentProjectId);
         const tasksToRender = projectToRender.tasks;
         renderController(tasksToRender);
     }
 
+
     function addTaskToMain(){
         const doesFormExist = document.getElementById("taskForm");
         if(doesFormExist) return;
-
         const emptyStateMsg = document.querySelector(".defaultMessageDiv");
-        if(emptyStateMsg){ emptyStateMsg.remove() };
+        if(emptyStateMsg) emptyStateMsg.remove();
 
         const form = createTaskForm(manager.allProjects, manager.defaultProjectID);
         form.taskForm.taskTitle.focus();
-
         form.taskForm.addEventListener("submit", (event)=>{
             event.preventDefault();
             const task = new Task(
@@ -52,6 +54,7 @@ export default function initApp(manager){
         })
     };
 
+
     function addProjectToList(){
         const doesTaskFormExist = document.getElementById("taskFormModal");
         if(doesTaskFormExist){
@@ -59,6 +62,8 @@ export default function initApp(manager){
         }
         //add a check to not add inbox project to list!
         const form = createProjectForm();
+        form.projectForm.projectTitle.focus();
+
         form.projectForm.addEventListener("submit", (event)=>{
             event.preventDefault();
             const project = new Project(
@@ -76,6 +81,7 @@ export default function initApp(manager){
         });
     };
 
+
     const addTaskBtnSidebar = document.getElementById("addTaskBtn");
     addTaskBtnSidebar.addEventListener("click", addTaskToMain);
     document.addEventListener("click", (e) => {
@@ -83,6 +89,7 @@ export default function initApp(manager){
             addTaskToMain();
         }
     });
+
 
     const addProjectBtnSidebar = document.getElementById("addProjectBtn");
     addProjectBtnSidebar.addEventListener("click", addProjectToList);
@@ -92,6 +99,7 @@ export default function initApp(manager){
         }
     });
 
+
     const inboxBtn = document.getElementById("inboxBtn");
     inboxBtn.addEventListener("click", ()=>{
         currentProjectId = manager.defaultProjectID;
@@ -99,7 +107,7 @@ export default function initApp(manager){
         renderProjectLabel();
     });
 
-    //My Tasks main tab switching and task display
+
     const myTasksBtn = document.getElementById("myTasksBtn")
     myTasksBtn.addEventListener("click", ()=>{
         let tasks = [];
@@ -116,11 +124,13 @@ export default function initApp(manager){
         currentProjectLabel.textContent = "My Tasks";
     });
 
+
     //search tasks button (look up all tasks by title?)
     const searchBtn = document.getElementById("searchBtn")
     searchBtn.addEventListener("click", ()=>{
 
     });
+
 
     //completed tasks switching and display
     const completedTasksBtn = document.getElementById("completedBtn");
@@ -225,7 +235,8 @@ export default function initApp(manager){
         }
     })
 
-    //project switching event listeners
+
+    //projectList event listeners
     const projectList = document.getElementById("projectList");
     projectList.addEventListener("click", (event)=>{
         const isProject = event.target.closest(".projectButton")
@@ -240,13 +251,8 @@ export default function initApp(manager){
         if(isRemoveBtn){
             const project = event.target.closest(".projectItem");
             const idToDelete = project.dataset.id;
-            //need to render inbox section as well if this is the current project selected
-            // if(idToDelete === currentProjectId){
-            //     renderController(inbox.tasks);
-            // }
             manager.removeProject(idToDelete);
             renderProjectList(manager.allProjects);
-            // need to reset the currentProjectId to the default inbox section then re-render.
             currentProjectId = manager.defaultProjectID;
             renderCurrentProject();
             renderProjectLabel();

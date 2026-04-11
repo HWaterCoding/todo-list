@@ -49,6 +49,10 @@ function renderTaskList(taskArea, tasks){
         taskItem.classList.add("taskItem");
         taskItem.dataset.id = task.id;
 
+        if(task.priority === "highPriority") taskItem.classList.add("highPriority");
+        if(task.priority === "mediumPriority") taskItem.classList.add("mediumPriority");
+        if(task.priority === "lowPriority") taskItem.classList.add("lowPriority");
+
         const completedCheckbox = document.createElement("input")
         completedCheckbox.type = "checkbox";
         completedCheckbox.checked = task.completed;
@@ -72,14 +76,44 @@ function renderTaskList(taskArea, tasks){
         taskItemDescription.value = task.description;
         taskItemDescription.readOnly = "true";
 
+        const taskItemSelectionBox = document.createElement("div");
+        taskItemSelectionBox.classList.add("taskItemSelectionBox");
+
         const taskItemDueDate = document.createElement("input");
         taskItemDueDate.classList.add("taskItemDueDate");
         taskItemDueDate.type = "date";
         taskItemDueDate.value = task.dueDate;
         //put in a check so that if no date is selected, don't display mm/dd/yyyy, display nothing
         taskItemDueDate.readOnly = "true";
+
+        const taskItemPriority = document.createElement("select");
+        taskItemPriority.classList.add("taskItemPriority");
+
+        const defaultPriorityOption = document.createElement("option");
+        defaultPriorityOption.value = "";
+        defaultPriorityOption.textContent = "Priority";
+        defaultPriorityOption.hidden = true;
+
+        const highOption = document.createElement("option");
+        highOption.value = "highPriority";
+        highOption.textContent = "High";
+
+        const mediumOption = document.createElement("option");
+        mediumOption.value = "mediumPriority";
+        mediumOption.textContent = "Medium";
+
+        const lowOption = document.createElement("option");
+        lowOption.value = "lowPriority";
+        lowOption.textContent = "Low";
+
+        taskItemPriority.append(defaultPriorityOption, highOption, mediumOption, lowOption);
+        taskItemSelectionBox.append(taskItemPriority, taskItemDueDate);
+
+        //KEEP THE PRIORITY SELECTOR HIDDEN UNTIL THE EDIT BUTTON IS CLICKED!! (SAME AS READONLY BUT WITH DISPLAY)
+
+        //I also need to add in the project selector to allow them to switch projects for the task.
         
-        taskItemInfo.append(taskItemTitle, taskItemDescription, taskItemDueDate);
+        taskItemInfo.append(taskItemTitle, taskItemDescription, taskItemSelectionBox);
 
         const taskItemButtons = document.createElement("div");
         taskItemButtons.classList.add("taskItemButtons");
