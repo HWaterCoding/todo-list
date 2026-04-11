@@ -171,10 +171,8 @@ export default function initApp(manager){
             renderController(project.tasks);
         }
         if(isEditButton){
-
             const task = event.target.closest(".taskItem");
-            const doesEditExist = document.querySelector(".editTaskButtonContainer");
-            if(doesEditExist) return;
+            if (task.classList.contains("editing")) return;
                 
             const title = task.querySelector(".taskItemTitle");
             title.readOnly = false;
@@ -182,26 +180,12 @@ export default function initApp(manager){
             description.readOnly = false;
             const dueDate = task.querySelector(".taskItemDueDate");
             dueDate.readOnly = false;
-            const prioritySelector = task.querySelector(".taskItemPriority");
-            prioritySelector.style.display = "inline-block";
+            task.classList.add("editing");
             title.focus();
-
-            const editTaskButtonContainer = document.createElement("div");
-            editTaskButtonContainer.classList.add("editTaskButtonContainer");
-
-            const cancelEditBtn = document.createElement("button");
-            cancelEditBtn.classList.add("cancelEditBtn");
-            cancelEditBtn.textContent = "Cancel";
-
-            const saveEditBtn = document.createElement("button");
-            saveEditBtn.classList.add("saveEditBtn");
-            saveEditBtn.textContent = "Save";
-            
-            editTaskButtonContainer.append(cancelEditBtn, saveEditBtn);
-            const taskItemButtons = document.querySelector(".taskItemButtons");
-            taskItemButtons.append(editTaskButtonContainer);
         }
         if(isCancelEditBtn){
+            const task = event.target.closest(".taskItem");
+            task.classList.remove("editing");
             renderCurrentProject();
         };
         if(isSaveEditBtn){
@@ -223,6 +207,8 @@ export default function initApp(manager){
             taskToEdit.description = description.value;
             taskToEdit.dueDate = dueDate.value;
             taskToEdit.priority = prioritySelector.value;
+
+            //add the task to the selected value of the projectPicker, remove it from currentproject.
 
             renderCurrentProject();
         };

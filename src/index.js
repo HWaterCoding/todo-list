@@ -15,16 +15,16 @@ window.manager = manager;
 
 
 //will remove this, just for accessibility testing
-const testProject = new Project("Test Project");
-manager.addProject(testProject);
-renderProjectList(manager.allProjects);
+// const testProject = new Project("Test Project");
+// manager.addProject(testProject);
+// renderProjectList(manager.allProjects);
 
-for(let i = 0; i < 20; i++){
-    const task = new Task("whatever");
-    manager.addTaskToProject(testProject.id, task);
-}
+// for(let i = 0; i < 20; i++){
+//     const task = new Task("whatever");
+//     manager.addTaskToProject(testProject.id, task);
+// }
 
-renderController(testProject);
+// renderController(testProject);
 
 
 

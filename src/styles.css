@@ -504,7 +504,6 @@ select:hover{
     background-color: green;
 }
 
-
 .taskItem.highPriority{
     border: 1px solid red;
     box-shadow: 0px 0px 15px 1px var(--high-priority-theme);;
@@ -519,7 +518,6 @@ select:hover{
     border: 1px solid green;
     box-shadow: 0px 0px 15px 1px var(--low-priority-theme);
 }
-
 
 .completedCheckbox.highPriority{
     background-color: var(--high-priority-theme);;
@@ -536,9 +534,27 @@ select:hover{
     border-color: green;
 }
 
-
-
 .taskItemPriority{
+    /* style priority picker if you want? */
+}
+
+
+
+
+/* Editing CSS */
+
+.taskItem .editControls {
     display: none;
-    /* Add any other additional styles, change to display inline-block */
+}
+
+.taskItem.editing .editControls {
+    display: flex;
+}
+
+.taskItem .taskItemPriority {
+    display: none;
+}
+
+.taskItem.editing .taskItemPriority {
+    display: inline-block;
 }

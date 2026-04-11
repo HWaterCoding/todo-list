@@ -56,31 +56,14 @@ function renderTaskList(taskArea, tasks){
         if(task.completed){
             taskItem.classList.add("taskItemCompleted");
         } 
-
-        if(task.priority === "highPriority") {
-            taskItem.classList.add("highPriority");
-            taskItem.classList.remove("mediumPriority");
-            taskItem.classList.remove("lowPriority");
-            completedCheckbox.classList.add("highPriority");
-            completedCheckbox.classList.remove("mediumPriority");
-            completedCheckbox.classList.remove("lowPriority");
-        };
-        if(task.priority === "mediumPriority") {
-            taskItem.classList.add("mediumPriority");
-            taskItem.classList.remove("highPriority");
-            taskItem.classList.remove("lowPriority");
-            completedCheckbox.classList.add("mediumPriority");
-            completedCheckbox.classList.remove("highPriority");
-            completedCheckbox.classList.remove("lowPriority");
-        };
-        if(task.priority === "lowPriority") {
-            taskItem.classList.add("lowPriority");
-            taskItem.classList.remove("highPriority");
-            taskItem.classList.remove("mediumPriority");
-            completedCheckbox.classList.add("lowPriority");
-            completedCheckbox.classList.remove("highPriority");
-            completedCheckbox.classList.remove("mediumPriority");
-        };
+        
+        taskItem.classList.remove("highPriority", "mediumPriority", "lowPriority");
+        completedCheckbox.classList.remove("highPriority", "mediumPriority", "lowPriority");
+        
+        if(task.priority){
+            taskItem.classList.add(task.priority);
+            completedCheckbox.classList.add(task.priority);
+        }
 
         const taskItemInfo = document.createElement("div");
         taskItemInfo.classList.add("taskItemInfo");
@@ -99,13 +82,6 @@ function renderTaskList(taskArea, tasks){
 
         const taskItemSelectionBox = document.createElement("div");
         taskItemSelectionBox.classList.add("taskItemSelectionBox");
-
-        const taskItemDueDate = document.createElement("input");
-        taskItemDueDate.classList.add("taskItemDueDate");
-        taskItemDueDate.type = "date";
-        taskItemDueDate.value = task.dueDate;
-        //put in a check so that if no date is selected, don't display mm/dd/yyyy, display nothing
-        taskItemDueDate.readOnly = "true";
 
         const taskItemPriority = document.createElement("select");
         taskItemPriority.classList.add("taskItemPriority");
@@ -128,12 +104,19 @@ function renderTaskList(taskArea, tasks){
         lowOption.textContent = "Low";
 
         taskItemPriority.append(defaultPriorityOption, highOption, mediumOption, lowOption);
-        taskItemSelectionBox.append(taskItemPriority, taskItemDueDate);
 
-        //I also need to add in the project selector to allow them to switch projects for the task.
+        const taskItemDueDate = document.createElement("input");
+        taskItemDueDate.classList.add("taskItemDueDate");
+        taskItemDueDate.type = "date";
+        taskItemDueDate.value = task.dueDate;
+        //put in a check so that if no date is selected, don't display mm/dd/yyyy, display nothing
+        taskItemDueDate.readOnly = "true";
         
+        taskItemSelectionBox.append(taskItemPriority, taskItemDueDate);
         taskItemInfo.append(taskItemTitle, taskItemDescription, taskItemSelectionBox);
 
+
+        //EDITING TASK ITEMS
         const taskItemButtons = document.createElement("div");
         taskItemButtons.classList.add("taskItemButtons");
 
@@ -153,7 +136,33 @@ function renderTaskList(taskArea, tasks){
         deleteTaskBtn.appendChild(deleteTaskIcon);
 
         editAndDeleteBtn.append(editTaskBtn, deleteTaskBtn);
-        taskItemButtons.append(editAndDeleteBtn);
+
+        const editTaskButtonContainer = document.createElement("div");
+        editTaskButtonContainer.classList.add("editTaskButtonContainer", "editControls");
+
+        // const editProjectSelector = document.createElement("select");
+        // editProjectSelector.classList.add(editProjectSelector);
+        // for(const project of projects){
+        //     const projectOption = document.createElement("option");
+        //     projectOption.textContent = project.name;
+        //     if(project.id === defaultProjectID){
+        //         projectOption.textContent = "Inbox (default)";
+        //     }
+        //     projectOption.value = project.id;
+        //     projectSelector.appendChild(projectOption);
+        // }
+
+        const cancelEditBtn = document.createElement("button");
+        cancelEditBtn.classList.add("cancelEditBtn");
+        cancelEditBtn.textContent = "Cancel";
+
+        const saveEditBtn = document.createElement("button");
+        saveEditBtn.classList.add("saveEditBtn");
+        saveEditBtn.textContent = "Save";
+            
+        editTaskButtonContainer.append(cancelEditBtn, saveEditBtn);
+
+        taskItemButtons.append(editAndDeleteBtn, editTaskButtonContainer);
 
         taskItem.append(completedCheckbox, taskItemInfo, taskItemButtons);
         taskArea.appendChild(taskItem);
