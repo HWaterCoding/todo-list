@@ -5,6 +5,9 @@
     --light-pink-hover: rgb(245, 218, 218);
     --grey-theme: rgb(209, 202, 202);
     --grey-hover: rgb(179, 172, 172);
+    --high-priority-theme:rgb(238, 183, 183);
+    --medium-priority-theme: rgb(217, 217, 243);
+    --low-priority-theme: rgb(176, 230, 176);
 }
 
 *, *::before, *::after {
@@ -343,7 +346,6 @@ body {
 
 .taskItemCompleted{
     background-color: rgb(238, 233, 233);;
-    /* Change stylings here for when a task is completed (Strikethrough effect?) */
 }
 
 .taskItemCompleted .taskItemTitle{
@@ -351,18 +353,30 @@ body {
 }
 
 .completedCheckbox{
-    width: 20px;
-    height: 20px;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
 }
 
-.completedCheckbox:hover{
-    cursor: pointer;
+.completedCheckbox:checked::after {
+    content: "";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: rgb(95, 216, 47);
 }
 
 .taskItemInfo{
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
     gap: 5px;
     flex: 1;
 }
@@ -468,10 +482,6 @@ body {
 
 
 
-
-
-
-
 /* Priority CSS */
 select:hover{
     cursor: pointer;
@@ -494,19 +504,41 @@ select:hover{
     background-color: green;
 }
 
+
 .taskItem.highPriority{
     border: 1px solid red;
-    box-shadow: 0px 0px 10px rgb(255, 61, 61);
+    box-shadow: 0px 0px 15px 1px var(--high-priority-theme);;
 }
 
 .taskItem.mediumPriority{
     border: 1px solid blue;
-    box-shadow: 0px 0px 10px rgb(94, 94, 255);
+    box-shadow: 0px 0px 15px 1px var(--medium-priority-theme);
 }
 
 .taskItem.lowPriority{
-    border: 1px solid rgb(102, 255, 102);
-    box-shadow: 0px 0px 10px rgb(71, 231, 71);
+    border: 1px solid green;
+    box-shadow: 0px 0px 15px 1px var(--low-priority-theme);
 }
 
-/* Add checkbox stylings as well based on priority */
+
+.completedCheckbox.highPriority{
+    background-color: var(--high-priority-theme);;
+    border-color: red;
+}
+
+.completedCheckbox.mediumPriority{
+    background-color: var(--medium-priority-theme);
+    border-color: blue;
+}
+
+.completedCheckbox.lowPriority{
+    background-color: var(--low-priority-theme);
+    border-color: green;
+}
+
+
+
+.taskItemPriority{
+    display: none;
+    /* Add any other additional styles, change to display inline-block */
+}

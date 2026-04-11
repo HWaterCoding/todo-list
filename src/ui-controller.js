@@ -182,6 +182,8 @@ export default function initApp(manager){
             description.readOnly = false;
             const dueDate = task.querySelector(".taskItemDueDate");
             dueDate.readOnly = false;
+            const prioritySelector = task.querySelector(".taskItemPriority");
+            prioritySelector.style.display = "inline-block";
             title.focus();
 
             const editTaskButtonContainer = document.createElement("div");
@@ -211,6 +213,8 @@ export default function initApp(manager){
             description.readOnly = true;
             const dueDate = task.querySelector(".taskItemDueDate");
             dueDate.readOnly = true;
+            const prioritySelector = task.querySelector(".taskItemPriority");
+            prioritySelector.style.display = "none";
 
             const idToEdit = task.dataset.id;
             const taskToEdit = manager.getProject(currentProjectId).getTask(idToEdit);
@@ -218,6 +222,7 @@ export default function initApp(manager){
             taskToEdit.title = title.value;
             taskToEdit.description = description.value;
             taskToEdit.dueDate = dueDate.value;
+            taskToEdit.priority = prioritySelector.value;
 
             renderCurrentProject();
         };

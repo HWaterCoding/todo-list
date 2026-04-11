@@ -31,17 +31,9 @@ renderController(testProject);
 
 //Things to do next:
 
-//When a user selects a priority, change the border of the taskItem as well as the checkbox color to the theme
-//Add priority selector element to the edited task as well. it disappears.
-
-
-
+//append newly created projectPicker in renderTaskList to allow useres to change project for task
 
 //THERE'S A BUG WHEN CLICKING EDITTASK BUTTON IT APPENDS TO WRONG TASK??
-//THERE'S ALSO A BUG WITH INPUT FIELDS ON TASKITEMS BEING WAY TOO SMALL???
-
-
-
 
 
 

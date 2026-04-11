@@ -49,10 +49,6 @@ function renderTaskList(taskArea, tasks){
         taskItem.classList.add("taskItem");
         taskItem.dataset.id = task.id;
 
-        if(task.priority === "highPriority") taskItem.classList.add("highPriority");
-        if(task.priority === "mediumPriority") taskItem.classList.add("mediumPriority");
-        if(task.priority === "lowPriority") taskItem.classList.add("lowPriority");
-
         const completedCheckbox = document.createElement("input")
         completedCheckbox.type = "checkbox";
         completedCheckbox.checked = task.completed;
@@ -60,6 +56,31 @@ function renderTaskList(taskArea, tasks){
         if(task.completed){
             taskItem.classList.add("taskItemCompleted");
         } 
+
+        if(task.priority === "highPriority") {
+            taskItem.classList.add("highPriority");
+            taskItem.classList.remove("mediumPriority");
+            taskItem.classList.remove("lowPriority");
+            completedCheckbox.classList.add("highPriority");
+            completedCheckbox.classList.remove("mediumPriority");
+            completedCheckbox.classList.remove("lowPriority");
+        };
+        if(task.priority === "mediumPriority") {
+            taskItem.classList.add("mediumPriority");
+            taskItem.classList.remove("highPriority");
+            taskItem.classList.remove("lowPriority");
+            completedCheckbox.classList.add("mediumPriority");
+            completedCheckbox.classList.remove("highPriority");
+            completedCheckbox.classList.remove("lowPriority");
+        };
+        if(task.priority === "lowPriority") {
+            taskItem.classList.add("lowPriority");
+            taskItem.classList.remove("highPriority");
+            taskItem.classList.remove("mediumPriority");
+            completedCheckbox.classList.add("lowPriority");
+            completedCheckbox.classList.remove("highPriority");
+            completedCheckbox.classList.remove("mediumPriority");
+        };
 
         const taskItemInfo = document.createElement("div");
         taskItemInfo.classList.add("taskItemInfo");
@@ -108,8 +129,6 @@ function renderTaskList(taskArea, tasks){
 
         taskItemPriority.append(defaultPriorityOption, highOption, mediumOption, lowOption);
         taskItemSelectionBox.append(taskItemPriority, taskItemDueDate);
-
-        //KEEP THE PRIORITY SELECTOR HIDDEN UNTIL THE EDIT BUTTON IS CLICKED!! (SAME AS READONLY BUT WITH DISPLAY)
 
         //I also need to add in the project selector to allow them to switch projects for the task.
         
