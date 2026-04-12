@@ -1,12 +1,12 @@
 //renderController to be exported and run, renderEmptyState and renderTaskList depending on data state
-export function renderController(tasks){
+export function renderController(tasks, projects, defaultProjectID){
     const taskArea = document.getElementById("taskArea");
     taskArea.innerHTML = "";
 
     if(tasks.length === 0){
         renderEmptyState(taskArea);
     } else{
-        renderTaskList(taskArea, tasks);
+        renderTaskList(taskArea, tasks, projects, defaultProjectID);
     }
 }
 
@@ -42,7 +42,7 @@ function renderEmptyState(taskArea){
     taskArea.appendChild(defaultMessageDiv);
 }
 
-function renderTaskList(taskArea, tasks){
+function renderTaskList(taskArea, tasks, projects, defaultProjectID){
     tasks.forEach(task => {
 
         const taskItem = document.createElement("div");
@@ -140,17 +140,18 @@ function renderTaskList(taskArea, tasks){
         const editTaskButtonContainer = document.createElement("div");
         editTaskButtonContainer.classList.add("editTaskButtonContainer", "editControls");
 
-        // const editProjectSelector = document.createElement("select");
-        // editProjectSelector.classList.add(editProjectSelector);
-        // for(const project of projects){
-        //     const projectOption = document.createElement("option");
-        //     projectOption.textContent = project.name;
-        //     if(project.id === defaultProjectID){
-        //         projectOption.textContent = "Inbox (default)";
-        //     }
-        //     projectOption.value = project.id;
-        //     projectSelector.appendChild(projectOption);
-        // }
+        const editProjectSelector = document.createElement("select");
+        editProjectSelector.classList.add("editProjectSelector");
+        for(const project of projects){
+            const projectOption = document.createElement("option");
+            projectOption.textContent = project.name;
+            if(project.id === defaultProjectID){
+                projectOption.textContent = "Inbox (default)";
+            }
+            projectOption.value = project.id;
+            editProjectSelector.appendChild(projectOption);
+        }
+        editProjectSelector.value = task.projectId || defaultProjectID;
 
         const cancelEditBtn = document.createElement("button");
         cancelEditBtn.classList.add("cancelEditBtn");
@@ -160,7 +161,7 @@ function renderTaskList(taskArea, tasks){
         saveEditBtn.classList.add("saveEditBtn");
         saveEditBtn.textContent = "Save";
             
-        editTaskButtonContainer.append(cancelEditBtn, saveEditBtn);
+        editTaskButtonContainer.append(editProjectSelector, cancelEditBtn, saveEditBtn);
 
         taskItemButtons.append(editAndDeleteBtn, editTaskButtonContainer);
 

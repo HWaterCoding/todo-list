@@ -27,6 +27,7 @@ export default class AppManager{
     addTaskToProject(projectID, task){
         const project = this.getProject(projectID);
         if(project){
+            task.projectId = projectID;
             project.addTask(task);
         }
     }

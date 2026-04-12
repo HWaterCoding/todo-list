@@ -21,7 +21,7 @@ export default function initApp(manager){
     function renderCurrentProject(){
         const projectToRender = manager.getProject(currentProjectId);
         const tasksToRender = projectToRender.tasks;
-        renderController(tasksToRender);
+        renderController(tasksToRender, manager.allProjects, manager.defaultProjectID);
     }
 
 
@@ -119,7 +119,7 @@ export default function initApp(manager){
             tasks.push(...projectTasks);
         }
 
-        renderController(tasks);
+        renderController(tasks, manager.allProjects, manager.defaultProjectID);
         const currentProjectLabel = document.getElementById("currentProjectLabel");
         currentProjectLabel.textContent = "My Tasks";
     });
@@ -148,7 +148,7 @@ export default function initApp(manager){
             }
         }
 
-        renderController(tasks);
+        renderController(tasks, manager.allProjects, manager.defaultProjectID);
         const currentProjectLabel = document.getElementById("currentProjectLabel");
         currentProjectLabel.textContent = "Completed";
     });
@@ -180,6 +180,7 @@ export default function initApp(manager){
             description.readOnly = false;
             const dueDate = task.querySelector(".taskItemDueDate");
             dueDate.readOnly = false;
+
             task.classList.add("editing");
             title.focus();
         }
