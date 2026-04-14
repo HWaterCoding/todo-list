@@ -33,6 +33,7 @@ export default function initApp(manager){
 
         const form = createTaskForm(manager.allProjects, manager.defaultProjectID, manager.getProject(currentProjectId));
         form.taskForm.taskTitle.focus();
+        //add a check that if form is not submitted, then re-load emptystatemsg
         form.taskForm.addEventListener("submit", (event)=>{
             event.preventDefault();
             const task = new Task(
@@ -62,6 +63,7 @@ export default function initApp(manager){
         }
         const form = createProjectForm();
         form.projectForm.projectTitle.focus();
+        renderCurrentProject(manager.allProjects);
 
         form.projectForm.addEventListener("submit", (event)=>{
             event.preventDefault();
@@ -167,7 +169,7 @@ export default function initApp(manager){
             const idToDelete = task.dataset.id;
             const project = manager.getProject(currentProjectId);
             project.removeTask(idToDelete)
-            renderController(project.tasks);
+            renderCurrentProject();
         }
         if(isEditButton){
             const task = event.target.closest(".taskItem");
@@ -199,6 +201,7 @@ export default function initApp(manager){
             dueDate.readOnly = true;
             const prioritySelector = task.querySelector(".taskItemPriority");
             prioritySelector.style.display = "none";
+            const projectSelector = task.querySelector(".editProjectSelector");
 
             const idToEdit = task.dataset.id;
             const taskToEdit = manager.getProject(currentProjectId).getTask(idToEdit);
@@ -208,7 +211,9 @@ export default function initApp(manager){
             taskToEdit.dueDate = dueDate.value;
             taskToEdit.priority = prioritySelector.value;
 
-            //add the task to the selected value of the projectPicker, remove it from currentproject.
+            const projectToRemoveFrom = manager.getProject(taskToEdit.projectId);
+            projectToRemoveFrom.removeTask(idToEdit);
+            manager.addTaskToProject(projectSelector.value, taskToEdit);
 
             renderCurrentProject();
         };
@@ -225,7 +230,6 @@ export default function initApp(manager){
             renderCurrentProject();
         }
     })
-
 
     //projectList event listeners
     const projectList = document.getElementById("projectList");
@@ -247,7 +251,13 @@ export default function initApp(manager){
             currentProjectId = manager.defaultProjectID;
             renderCurrentProject();
             renderProjectLabel();
-            //what happens to the removed projects tasks??
         }
+    })
+
+    const sortSelect = document.getElementById("sortTasks");
+    sortSelect.addEventListener("change", ()=>{
+        const project = manager.getProject(currentProjectId);
+        const tasks = project.sortTasks(sortTasks.value);
+        renderController(tasks, manager.allProjects, manager.defaultProjectID);
     })
 }

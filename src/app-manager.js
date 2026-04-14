@@ -8,15 +8,12 @@ export default class AppManager{
         this.inboxProjectId = inbox.id;
     }
 
-    // static sortTasks = {
-        //probably need sort methods here too
-    // }
-
     addProject(project){
         this.projects.push(project);
     }
 
     removeProject(projectID){
+        if(projectID === this.defaultProjectID) return;
         this.projects = this.projects.filter(project => project.id !== projectID);
     }
 

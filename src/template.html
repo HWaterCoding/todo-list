@@ -101,13 +101,15 @@
                 </div>
                 <div id="sortOptions">
                     <select id="sortTasks">
+                        <!-- remove sort tasks by: and make order created selected option by default? -->
                         <option value="" hidden="true">Sort Tasks By:</option>
-                        <option value="a2z">Alphabetical (A-Z)</option>
-                        <option value="z2a">Alphabetical (Z-A)</option>
-                        <option value="duedate">Coming up soon!</option>
-                        <option value="recent">Recently Added</option>
-                        <option value="h2l">Priority (High-Low)</option>
-                        <option value="l2h">Priority (Low-High)</option>
+                        <option value="orderCreated">Order Created (default)</option>
+                        <option value="alphabetical">Alphabetical (A-Z)</option>
+                        <option value="reverseAlphabetical">Alphabetical (Z-A)</option>
+                        <option value="dueSoon">Coming up soon!</option>
+                        <option value="recentlyAdded">Recently Added</option>
+                        <option value="highPriority">Priority (High-Low)</option>
+                        <option value="lowPriority">Priority (Low-High)</option>
                     </select>
                 </div>
             </main>
