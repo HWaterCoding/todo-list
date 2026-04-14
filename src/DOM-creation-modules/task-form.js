@@ -1,4 +1,4 @@
-export default function createTaskForm(projects, defaultProjectID){
+export default function createTaskForm(projects, defaultProjectID, currentProject){
 
     const taskArea = document.getElementById("taskArea");
 
@@ -67,6 +67,9 @@ export default function createTaskForm(projects, defaultProjectID){
         projectOption.textContent = project.name;
         if(project.id === defaultProjectID){
             projectOption.textContent = "Inbox (default)";
+        }
+        if(project.id === currentProject.id){
+            projectOption.selected = true;
         }
         projectOption.value = project.id;
         projectSelector.appendChild(projectOption);

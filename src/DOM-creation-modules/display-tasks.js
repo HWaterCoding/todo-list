@@ -170,11 +170,13 @@ function renderTaskList(taskArea, tasks, projects, defaultProjectID){
     });
 }
 
-export function renderProjectList(projects){
+export function renderProjectList(projects, defaultProjectID){
     const projectList = document.getElementById("projectList");
     projectList.innerHTML = "";
 
-    projects.forEach(project =>{
+    const filteredProjects = projects.filter(project => project.id !== defaultProjectID);
+
+    filteredProjects.forEach(project =>{
 
         const projectItem = document.createElement("div");
         projectItem.classList.add("projectItem");

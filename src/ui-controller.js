@@ -31,7 +31,7 @@ export default function initApp(manager){
         const emptyStateMsg = document.querySelector(".defaultMessageDiv");
         if(emptyStateMsg) emptyStateMsg.remove();
 
-        const form = createTaskForm(manager.allProjects, manager.defaultProjectID);
+        const form = createTaskForm(manager.allProjects, manager.defaultProjectID, manager.getProject(currentProjectId));
         form.taskForm.taskTitle.focus();
         form.taskForm.addEventListener("submit", (event)=>{
             event.preventDefault();
@@ -60,7 +60,6 @@ export default function initApp(manager){
         if(doesTaskFormExist){
             doesTaskFormExist.remove();
         }
-        //add a check to not add inbox project to list!
         const form = createProjectForm();
         form.projectForm.projectTitle.focus();
 
@@ -70,7 +69,7 @@ export default function initApp(manager){
                 form.projectForm.projectTitle.value
             );
             manager.addProject(project);
-            renderProjectList(manager.allProjects);
+            renderProjectList(manager.allProjects, manager.defaultProjectID);
             form.projectFormOverlay.remove();
         });
 
@@ -244,7 +243,7 @@ export default function initApp(manager){
             const project = event.target.closest(".projectItem");
             const idToDelete = project.dataset.id;
             manager.removeProject(idToDelete);
-            renderProjectList(manager.allProjects);
+            renderProjectList(manager.allProjects, manager.defaultProjectID);
             currentProjectId = manager.defaultProjectID;
             renderCurrentProject();
             renderProjectLabel();
