@@ -6,25 +6,26 @@ import { renderController, renderProjectList } from "./DOM-creation-modules/disp
 
 export default function initApp(manager){
 
+    //default load + stored project ID at all times
     let currentProjectId = manager.defaultProjectID;
     renderCurrentProject();
     renderProjectLabel();
     
-
+    //project label updating
     function renderProjectLabel(){
         const project = manager.getProject(currentProjectId);
         const currentProjectLabel = document.getElementById("currentProjectLabel");
         currentProjectLabel.textContent = project.name;
     }
 
-
+    //general rendering function
     function renderCurrentProject(){
         const projectToRender = manager.getProject(currentProjectId);
         const tasksToRender = projectToRender.tasks;
         renderController(tasksToRender, manager.allProjects, manager.defaultProjectID);
     }
 
-
+    // function to create new tasks
     function addTaskToMain(){
         const doesFormExist = document.getElementById("taskForm");
         if(doesFormExist) return;
@@ -33,7 +34,6 @@ export default function initApp(manager){
 
         const form = createTaskForm(manager.allProjects, manager.defaultProjectID, manager.getProject(currentProjectId));
         form.taskForm.taskTitle.focus();
-        //add a check that if form is not submitted, then re-load emptystatemsg
         form.taskForm.addEventListener("submit", (event)=>{
             event.preventDefault();
             const task = new Task(
@@ -55,7 +55,7 @@ export default function initApp(manager){
         })
     };
 
-
+    // function to create new projects
     function addProjectToList(){
         const doesTaskFormExist = document.getElementById("taskFormModal");
         if(doesTaskFormExist){
@@ -82,7 +82,7 @@ export default function initApp(manager){
         });
     };
 
-
+    //listeners for adding tasks and projects
     const addTaskBtnSidebar = document.getElementById("addTaskBtn");
     addTaskBtnSidebar.addEventListener("click", addTaskToMain);
     document.addEventListener("click", (e) => {
@@ -90,7 +90,6 @@ export default function initApp(manager){
             addTaskToMain();
         }
     });
-
 
     const addProjectBtnSidebar = document.getElementById("addProjectBtn");
     addProjectBtnSidebar.addEventListener("click", addProjectToList);
@@ -100,7 +99,7 @@ export default function initApp(manager){
         }
     });
 
-
+    //default inbox project to append tasks to on creation
     const inboxBtn = document.getElementById("inboxBtn");
     inboxBtn.addEventListener("click", ()=>{
         currentProjectId = manager.defaultProjectID;
@@ -108,7 +107,7 @@ export default function initApp(manager){
         renderProjectLabel();
     });
 
-
+    //accumlative task section
     const myTasksBtn = document.getElementById("myTasksBtn")
     myTasksBtn.addEventListener("click", ()=>{
         let tasks = [];
@@ -125,13 +124,11 @@ export default function initApp(manager){
         currentProjectLabel.textContent = "My Tasks";
     });
 
-
     //search tasks button (look up all tasks by title?)
     const searchBtn = document.getElementById("searchBtn")
     searchBtn.addEventListener("click", ()=>{
 
     });
-
 
     //completed tasks switching and display
     const completedTasksBtn = document.getElementById("completedBtn");
@@ -153,7 +150,6 @@ export default function initApp(manager){
         const currentProjectLabel = document.getElementById("currentProjectLabel");
         currentProjectLabel.textContent = "Completed";
     });
-
 
     // taskItem event listeners 
     const taskArea = document.getElementById("taskArea");
@@ -254,6 +250,7 @@ export default function initApp(manager){
         }
     })
 
+    //sorting tasks logic
     const sortSelect = document.getElementById("sortTasks");
     sortSelect.addEventListener("change", ()=>{
         const project = manager.getProject(currentProjectId);

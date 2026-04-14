@@ -32,10 +32,6 @@ window.manager = manager;
 //Things to do next:
 
 //consider where else the sortTasks() function needs to be called after rendering logically.
-
 //4) Style the project buttons correctly in the project list and add an "active" feautre to reflect which project is active
-
-
-//8)  go through all modules and slowly start fixing every single commented piece of code that needs attention
-
 //Add localStorage!
+//udpate all CSS to be entirely responsive so no visual glitches occur!

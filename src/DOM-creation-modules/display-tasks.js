@@ -1,4 +1,4 @@
-//renderController to be exported and run, renderEmptyState and renderTaskList depending on data state
+//controller to decide which rendering function to execute based on state
 export function renderController(tasks, projects, defaultProjectID){
     const taskArea = document.getElementById("taskArea");
     taskArea.innerHTML = "";
@@ -10,6 +10,7 @@ export function renderController(tasks, projects, defaultProjectID){
     }
 }
 
+//default render state if no tasks found, prompting user to add tasks
 function renderEmptyState(taskArea){
 
     const defaultMessageDiv = document.createElement("div");
@@ -42,6 +43,7 @@ function renderEmptyState(taskArea){
     taskArea.appendChild(defaultMessageDiv);
 }
 
+//function for rendering every single task in a project
 function renderTaskList(taskArea, tasks, projects, defaultProjectID){
     tasks.forEach(task => {
 
@@ -170,6 +172,7 @@ function renderTaskList(taskArea, tasks, projects, defaultProjectID){
     });
 }
 
+//function to handle sidebar project lists
 export function renderProjectList(projects, defaultProjectID){
     const projectList = document.getElementById("projectList");
     projectList.innerHTML = "";

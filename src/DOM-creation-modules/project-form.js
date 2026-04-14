@@ -1,6 +1,4 @@
-//form module for project creation
 export default function createProjectForm(){
-    //change to body?
     const body = document.querySelector('body');
 
     const projectFormOverlay = document.createElement("div");

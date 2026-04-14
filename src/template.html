@@ -6,114 +6,92 @@
     <title>To-Do List</title>
     <script src="https://kit.fontawesome.com/00250d9010.js" crossorigin="anonymous"></script>
 </head>
+
 <body>
+    <header id="header">
+        <h1>Welcome to To-Due</h1>
+        <div id="header-options">
+            <button class="header-btn"><i class="fa-solid fa-bell"></i></button>
+            <button class="header-btn"><i class="fa-solid fa-gear"></i></button>
+            <button class="header-btn" id="themeSwitcher">
+                <i class="fa-solid fa-moon"></i>
+                <!-- <i class="fa-solid fa-sun"></i> -->
+            </button>
+        </div>
+    </header>
 
-    <!-- Create a sidebar with several options(similar to dashboard project) -->
-
-        <!-- Have a "my projects" section to display all projects -->
-            <!-- (Add tab switching logic in one module to display tasks in that project) -->
+    <aside id="sidebar">
+        <div id="taskSection">
+            <button class="sidebar-btn" id="addTaskBtn">
+                <i class="fa-solid fa-circle-plus"></i>
+                <span>Add task</span>
+            </button>
+            
+            <button class="sidebar-btn" id="inboxBtn">
+                <i class="fa-solid fa-envelope"></i>
+                <span>Inbox</span>
+            </button>
+            
+            <button class="sidebar-btn" id="myTasksBtn">
+                <i class="fa-solid fa-list"></i>
+                <span>My Tasks</span>
+            </button>
+            
+            <button class="sidebar-btn" id="searchBtn">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <span>Search</span>
+            </button>
+            
+            <button class="sidebar-btn" id="completedBtn">
+                <i class="fa-solid fa-circle-check"></i>
+                <span>Completed</span>
+            </button>
+        </div>
         
-        <!-- Below that we'll have ways to sort/display tasks based on input -->
-        <!-- At the top we'll have an addTask button -->
-        <!-- First section will be "today" to display current tasks today -->
-        <!-- We'll also add a "completed" section for any tasks completed -->
-        <!-- We'll have a "by date" section like "upcoming" on todoist -->
-
-        <!-- Have a "my projects section to display current projects" -->
-        <!-- Append all projects created to this section below add button -->
-
-
-    <!-- Create a main section to cover rest of page -->
-
-        <!-- In main section we will load different content based on whats clicked on sidebar -->
-        <!-- Each to-do item will have a title, description, dueDate, priority, a checkBtn, editBtn, deleteBtn -->
-        <!--  -->
-
-            <header id="header">
-                <h1>Welcome to To-Due</h1>
-                <div id="header-options">
-                    <button class="header-btn"><i class="fa-solid fa-bell"></i></button>
-                    <button class="header-btn"><i class="fa-solid fa-gear"></i></button>
-                    <button class="header-btn" id="themeSwitcher">
-                        <i class="fa-solid fa-moon"></i>
-                        <!-- <i class="fa-solid fa-sun"></i> -->
-                    </button>
-                </div>
-            </header>
-    
-            <aside id="sidebar">
-                <div id="taskSection">
-                    <button class="sidebar-btn" id="addTaskBtn">
-                        <i class="fa-solid fa-circle-plus"></i>
-                        <span>Add task</span>
-                    </button>
-
-                    <button class="sidebar-btn" id="inboxBtn">
-                        <i class="fa-solid fa-envelope"></i>
-                        <span>Inbox</span>
-                    </button>
-                    
-                    <button class="sidebar-btn" id="myTasksBtn">
-                        <i class="fa-solid fa-list"></i>
-                        <span>My Tasks</span>
-                    </button>
-
-                    <button class="sidebar-btn" id="searchBtn">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                        <span>Search</span>
-                    </button>
-
-                    <button class="sidebar-btn" id="completedBtn">
-                        <i class="fa-solid fa-circle-check"></i>
-                        <span>Completed</span>
-                    </button>
-                </div>
-
-                <div id="projectSection">
-                    <div id="addProjects">
-                        <h2>My Projects</h2>
-                        <button class="sidebar-btn" id="addProjectBtn">
-                            <i class="fa-solid fa-circle-plus"></i>
-                        </button>
-                    </div>
-                    <div id="projectList">
-                        <!-- Projects will get appended here when created -->
-                    </div>
-                </div>
+        <div id="projectSection">
+            <div id="addProjects">
+                <h2>My Projects</h2>
+                <button class="sidebar-btn" id="addProjectBtn">
+                    <i class="fa-solid fa-circle-plus"></i>
+                </button>
+            </div>
+            <div id="projectList">
                 
-                <div id="serviceSection">
-                    <button class="sidebar-btn" id="settingsBtn">
-                        <i class="fa-solid fa-gear"></i> 
-                        <span>Settings</span>
-                    </button>
-                    <button class="sidebar-btn" id="helpBtn">
-                        <i class="fa-solid fa-circle-question"></i> 
-                        <span>Help</span>
-                    </button>
-                </div>
+            </div>
+        </div>
+        
+        <div id="serviceSection">
+            <button class="sidebar-btn" id="settingsBtn">
+                <i class="fa-solid fa-gear"></i> 
+                <span>Settings</span>
+            </button>
+            <button class="sidebar-btn" id="helpBtn">
+                <i class="fa-solid fa-circle-question"></i> 
+                <span>Help</span>
+            </button>
+        </div>
+        
+    </aside>
 
-            </aside>
-    
-            <main id="main">
-                <h1 id="currentProjectLabel">Current project</h1> 
-                <div id="taskArea">
-
-                </div>
-                <div id="sortOptions">
-                    <select id="sortTasks">
-                        <!-- remove sort tasks by: and make order created selected option by default? -->
-                        <option value="" hidden="true">Sort Tasks By:</option>
-                        <option value="orderCreated">Order Created (default)</option>
-                        <option value="alphabetical">Alphabetical (A-Z)</option>
-                        <option value="reverseAlphabetical">Alphabetical (Z-A)</option>
-                        <option value="dueSoon">Coming up soon!</option>
-                        <option value="recentlyAdded">Recently Added</option>
-                        <option value="highPriority">Priority (High-Low)</option>
-                        <option value="lowPriority">Priority (Low-High)</option>
-                    </select>
-                </div>
-            </main>
-
+    <main id="main">
+        <h1 id="currentProjectLabel">Current project</h1> 
+        <div id="taskArea">
+            
+        </div>
+        <div id="sortOptions">
+            <select id="sortTasks">
+                <!-- remove sort tasks by: and make order created selected option by default? -->
+                <option value="" hidden="true">Sort Tasks By:</option>
+                <option value="orderCreated">Order Created (default)</option>
+                <option value="alphabetical">Alphabetical (A-Z)</option>
+                <option value="reverseAlphabetical">Alphabetical (Z-A)</option>
+                <option value="dueSoon">Coming up soon!</option>
+                <option value="recentlyAdded">Recently Added</option>
+                <option value="highPriority">Priority (High-Low)</option>
+                <option value="lowPriority">Priority (Low-High)</option>
+            </select>
+        </div>
+    </main>
 
 </body>
 </html>

@@ -1,4 +1,3 @@
-// This module will have a class with a constructor for tasks when created
 export default class Task{
     constructor(title, description, dueDate, priority, completed = false){
         this.id = crypto.randomUUID();
