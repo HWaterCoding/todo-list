@@ -128,14 +128,32 @@ body {
 }
 
 .projectItem{
+    background: var(--salmon-theme);
     display: flex;
-    width: 80%;
-    max-width: 100%;
     justify-content: space-between;
+    width: 100%;
+    max-width: 100%;
+    border-radius: 25px;
 }
 
 .projectButton{
-    
+    background: var(--salmon-theme);
+    cursor: pointer;
+    font-size: 1.5rem;
+    gap: 8px;
+    border: none;
+    border-radius: 25px;
+    padding: 10px;
+    flex: 1;
+}
+
+.projectButton:hover,
+.projectButton.active:hover{
+    background: var(--salmon-hover);
+}
+
+.projectButton.active{
+    background-color: rgb(44, 6, 6);
 }
 
 .removeProjectBtn{
@@ -187,7 +205,6 @@ body {
 }
 
 #taskArea {
-    /* background: var(--salmon-theme); */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -363,7 +380,7 @@ body {
     cursor: pointer;
 }
 
-.completedCheckbox:checked::after {
+.completedCheckbox:checked::after{
     content: "";
     position: absolute;
     top: 3px;
@@ -466,7 +483,6 @@ body {
     flex-direction: column;
     align-items: center;
     gap: 10px;
-    /* padding: clamp(1rem, 20px, 1.5rem); */
 }
 
 #projectForm input{
@@ -534,27 +550,21 @@ select:hover{
     border-color: green;
 }
 
-.taskItemPriority{
-    /* style priority picker if you want? */
-}
-
-
 
 
 /* Editing CSS */
-
-.taskItem .editControls {
+.taskItem .editControls{
     display: none;
 }
 
-.taskItem.editing .editControls {
+.taskItem.editing .editControls{
     display: flex;
 }
 
-.taskItem .taskItemPriority {
+.taskItem .taskItemPriority{
     display: none;
 }
 
-.taskItem.editing .taskItemPriority {
+.taskItem.editing .taskItemPriority{
     display: inline-block;
 }

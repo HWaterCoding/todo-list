@@ -173,7 +173,7 @@ function renderTaskList(taskArea, tasks, projects, defaultProjectID){
 }
 
 //function to handle sidebar project lists
-export function renderProjectList(projects, defaultProjectID){
+export function renderProjectList(projects, defaultProjectID, currentProjectId, currentView){
     const projectList = document.getElementById("projectList");
     projectList.innerHTML = "";
 
@@ -189,6 +189,10 @@ export function renderProjectList(projects, defaultProjectID){
         projectButton.classList.add("projectButton");
         projectButton.textContent = project.name;
         projectButton.dataset.id = project.id;
+
+        if(currentView === "project" && project.id === currentProjectId){
+            projectButton.classList.add("active");
+        }
 
         const removeProjectBtn = document.createElement("button");
         removeProjectBtn.classList.add("removeProjectBtn", "sidebar-btn");

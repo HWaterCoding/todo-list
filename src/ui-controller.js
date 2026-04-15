@@ -6,7 +6,8 @@ import { renderController, renderProjectList } from "./DOM-creation-modules/disp
 
 export default function initApp(manager){
 
-    //default load + stored project ID at all times
+    //default load + stored project ID + view at all times
+    let currentView = "project"; 
     let currentProjectId = manager.defaultProjectID;
     renderCurrentProject();
     renderProjectLabel();
@@ -22,6 +23,7 @@ export default function initApp(manager){
     function renderCurrentProject(){
         const projectToRender = manager.getProject(currentProjectId);
         const tasksToRender = projectToRender.tasks;
+        renderProjectList(manager.allProjects, manager.defaultProjectID, currentProjectId, currentView);
         renderController(tasksToRender, manager.allProjects, manager.defaultProjectID);
     }
 
@@ -71,7 +73,7 @@ export default function initApp(manager){
                 form.projectForm.projectTitle.value
             );
             manager.addProject(project);
-            renderProjectList(manager.allProjects, manager.defaultProjectID);
+            renderProjectList(manager.allProjects, manager.defaultProjectID, currentProjectId, currentView);
             form.projectFormOverlay.remove();
         });
 
@@ -102,6 +104,7 @@ export default function initApp(manager){
     //default inbox project to append tasks to on creation
     const inboxBtn = document.getElementById("inboxBtn");
     inboxBtn.addEventListener("click", ()=>{
+        currentView = "inbox";
         currentProjectId = manager.defaultProjectID;
         renderCurrentProject();
         renderProjectLabel();
@@ -110,6 +113,7 @@ export default function initApp(manager){
     //accumlative task section
     const myTasksBtn = document.getElementById("myTasksBtn")
     myTasksBtn.addEventListener("click", ()=>{
+        currentView = "myTasks";
         let tasks = [];
 
         const projects = manager.allProjects;
@@ -120,6 +124,7 @@ export default function initApp(manager){
         }
 
         renderController(tasks, manager.allProjects, manager.defaultProjectID);
+        renderProjectList(manager.allProjects, manager.defaultProjectID, currentProjectId, currentView);
         const currentProjectLabel = document.getElementById("currentProjectLabel");
         currentProjectLabel.textContent = "My Tasks";
     });
@@ -133,6 +138,7 @@ export default function initApp(manager){
     //completed tasks switching and display
     const completedTasksBtn = document.getElementById("completedBtn");
     completedTasksBtn.addEventListener("click", ()=>{
+        currentView = "completedTasks";
         let tasks = [];
 
         const projects = manager.allProjects;
@@ -147,6 +153,7 @@ export default function initApp(manager){
         }
 
         renderController(tasks, manager.allProjects, manager.defaultProjectID);
+        renderProjectList(manager.allProjects, manager.defaultProjectID, currentProjectId, currentView);
         const currentProjectLabel = document.getElementById("currentProjectLabel");
         currentProjectLabel.textContent = "Completed";
     });
@@ -235,6 +242,7 @@ export default function initApp(manager){
         if(!isProject && !isRemoveBtn) return;
         if(isProject){
             taskArea.innerHTML = "";
+            currentView = "project";
             currentProjectId = isProject.dataset.id;
             renderCurrentProject();
             renderProjectLabel();
@@ -243,7 +251,6 @@ export default function initApp(manager){
             const project = event.target.closest(".projectItem");
             const idToDelete = project.dataset.id;
             manager.removeProject(idToDelete);
-            renderProjectList(manager.allProjects, manager.defaultProjectID);
             currentProjectId = manager.defaultProjectID;
             renderCurrentProject();
             renderProjectLabel();

@@ -14,24 +14,17 @@ window.Task = Task;
 window.manager = manager;
 
 
-//will remove this, just for accessibility testing
-// const testProject = new Project("Test Project");
-// manager.addProject(testProject);
-// renderProjectList(manager.allProjects);
-
-// for(let i = 0; i < 20; i++){
-//     const task = new Task("whatever");
-//     manager.addTaskToProject(testProject.id, task);
-// }
-
-// renderController(testProject);
-
-
 
 
 //Things to do next:
 
-//consider where else the sortTasks() function needs to be called after rendering logically.
-//4) Style the project buttons correctly in the project list and add an "active" feautre to reflect which project is active
+
 //Add localStorage!
+
 //udpate all CSS to be entirely responsive so no visual glitches occur!
+//finalize any CSS changes needed for stlying
+
+//add a night mode feature if you want
+//add a search option if you want
+
+//one last comb through of project to look for unfinished comments/code/bugs, etc
