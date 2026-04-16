@@ -18,7 +18,6 @@ export default class AppManager{
         localStorage.setItem("projects", JSON.stringify(this.allProjects));
     }
 
-    //need to reset the inbox project ID too
     loadStorage(){
         const parsedProjects = JSON.parse(localStorage.getItem("projects"));
         this.projects = parsedProjects.map(projectData =>{
@@ -65,6 +64,8 @@ export default class AppManager{
             this.populateStorage();
         }
     }
+
+    //add a removeTaskFromProject() function here
 
     toggleTaskCompletion(projectID, taskID){
         const project = this.getProject(projectID);
