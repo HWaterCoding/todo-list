@@ -9,7 +9,6 @@ export default class Task{
         this.completed = completed;
     }
 
-    //I think I can remove this method entirely tbh
     toggleCompletion(){
         this.completed = !this.completed;
     }

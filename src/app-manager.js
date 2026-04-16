@@ -1,20 +1,56 @@
 import Project from "./project.js";
+import Task from "./task.js";
 
 export default class AppManager{
     constructor(){
         this.projects = [];
-        const inbox = new Project("Inbox");
-        this.projects.push(inbox);
-        this.inboxProjectId = inbox.id;
+        const isStored = localStorage.getItem("projects");
+        if(isStored){
+            this.loadStorage();
+        } else{
+            const inbox = new Project("Inbox");
+            this.projects.push(inbox);
+            this.inboxProjectId = inbox.id;
+        }
+    }
+
+    populateStorage(){
+        localStorage.setItem("projects", JSON.stringify(this.allProjects));
+    }
+
+    //need to reset the inbox project ID too
+    loadStorage(){
+        const parsedProjects = JSON.parse(localStorage.getItem("projects"));
+        this.projects = parsedProjects.map(projectData =>{
+            const project = new Project(projectData.name);
+            project.id = projectData.id;
+            project.tasks = (projectData.tasks || []).map(taskData =>{
+                const task = new Task(
+                    taskData.title,
+                    taskData.description,
+                    taskData.dueDate,
+                    taskData.priority,
+                )
+                task.id = taskData.id;
+                task.createdDate = taskData.createdDate;
+                task.completed = taskData.completed;
+                task.projectId = taskData.projectId;
+                return task;
+            })
+            return project;
+        })
+        this.inboxProjectId = this.projects.find(project => project.name === "Inbox")?.id;
     }
 
     addProject(project){
         this.projects.push(project);
+        this.populateStorage();
     }
 
     removeProject(projectID){
         if(projectID === this.defaultProjectID) return;
         this.projects = this.projects.filter(project => project.id !== projectID);
+        this.populateStorage();
     }
 
     getProject(projectID){
@@ -26,7 +62,15 @@ export default class AppManager{
         if(project){
             task.projectId = projectID;
             project.addTask(task);
+            this.populateStorage();
         }
+    }
+
+    toggleTaskCompletion(projectID, taskID){
+        const project = this.getProject(projectID);
+        const task = project.getTask(taskID);
+        task.toggleCompletion();
+        this.populateStorage();
     }
     
     get allProjects(){

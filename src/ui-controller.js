@@ -75,6 +75,7 @@ export default function initApp(manager){
             manager.addProject(project);
             renderProjectList(manager.allProjects, manager.defaultProjectID, currentProjectId, currentView);
             form.projectFormOverlay.remove();
+            // manager.populateStorage();
         });
 
         const cancelProjectBtn = form.projectForm.querySelector(".cancelProjectBtn")
@@ -173,6 +174,8 @@ export default function initApp(manager){
             const project = manager.getProject(currentProjectId);
             project.removeTask(idToDelete)
             renderCurrentProject();
+            //THIS EVENT LISTENER IS UNAFFECTED BY THE CURRENT POPULATESTORAGE() SOLUTION, MAYBE?
+            //UPDATE LOCAL STORAGE HERE
         }
         if(isEditButton){
             const task = event.target.closest(".taskItem");
@@ -223,13 +226,7 @@ export default function initApp(manager){
         if(isCompletedCheckbox){
             const task = event.target.closest(".taskItem");
             const taskID = task.dataset.id;
-            const taskToComplete = manager.getProject(currentProjectId).getTask(taskID);
-            const isChecked = event.target.checked;
-            if(!isChecked){
-                taskToComplete.completed = false;
-            } else{
-                taskToComplete.completed = true;
-            }
+            manager.toggleTaskCompletion(currentProjectId, taskID);
             renderCurrentProject();
         }
     })
@@ -254,6 +251,7 @@ export default function initApp(manager){
             currentProjectId = manager.defaultProjectID;
             renderCurrentProject();
             renderProjectLabel();
+            //REMOVE FROM LOCAL STORAGE HERE
         }
     })
 
