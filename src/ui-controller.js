@@ -8,6 +8,7 @@ export default function initApp(manager){
 
     //default load + stored project ID + view at all times
     let currentView = "project"; 
+    let currentSort = "orderCreated";
     let currentProjectId = manager.defaultProjectID;
     renderCurrentProject();
     renderProjectLabel();
@@ -21,10 +22,10 @@ export default function initApp(manager){
 
     //general rendering function
     function renderCurrentProject(){
-        const projectToRender = manager.getProject(currentProjectId);
-        const tasksToRender = projectToRender.tasks;
+        const project = manager.getProject(currentProjectId);
+        const tasks = project.sortTasks(currentSort);
         renderProjectList(manager.allProjects, manager.defaultProjectID, currentProjectId, currentView);
-        renderController(tasksToRender, manager.allProjects, manager.defaultProjectID);
+        renderController(tasks, manager.allProjects, manager.defaultProjectID);
     }
 
     // function to create new tasks
@@ -182,7 +183,9 @@ export default function initApp(manager){
             const description = task.querySelector(".taskItemDescription");
             description.readOnly = false;
             const dueDate = task.querySelector(".taskItemDueDate");
-            dueDate.readOnly = false;
+            dueDate.style.display = "inline-block";
+            const dateDisplay = task.querySelector(".dueDateDisplay");
+            dateDisplay.style.display = "none";
 
             task.classList.add("editing");
             title.focus();
@@ -213,8 +216,7 @@ export default function initApp(manager){
             taskToEdit.dueDate = dueDate.value;
             taskToEdit.priority = prioritySelector.value;
 
-            const projectToRemoveFrom = manager.getProject(taskToEdit.projectId);
-            projectToRemoveFrom.removeTask(idToEdit);
+            manager.removeTaskFromProject(currentProjectId, idToEdit);
             manager.addTaskToProject(projectSelector.value, taskToEdit);
 
             renderCurrentProject();
@@ -253,8 +255,9 @@ export default function initApp(manager){
     //sorting tasks logic
     const sortSelect = document.getElementById("sortTasks");
     sortSelect.addEventListener("change", ()=>{
+        currentSort = sortSelect.value;
         const project = manager.getProject(currentProjectId);
-        const tasks = project.sortTasks(sortTasks.value);
+        const tasks = project.sortTasks(currentSort);
         renderController(tasks, manager.allProjects, manager.defaultProjectID);
     })
 }

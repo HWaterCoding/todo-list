@@ -32,4 +32,6 @@ manager.populateStorage();
 
 //one last comb through of project to look for unfinished comments/code/bugs, etc
 
-
+//there is one issue with the project names where if a project name is too long, it makes the button push the sidebar
+//and take up way more space than it should. The same thing happens with the project label, which then pushes over
+//the taskArea and completely destroys layout. We need to implement some sort of wrapping feature or character limit.

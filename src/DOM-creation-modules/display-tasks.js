@@ -110,11 +110,22 @@ function renderTaskList(taskArea, tasks, projects, defaultProjectID){
         const taskItemDueDate = document.createElement("input");
         taskItemDueDate.classList.add("taskItemDueDate");
         taskItemDueDate.type = "date";
-        taskItemDueDate.value = task.dueDate;
-        //put in a check so that if no date is selected, don't display mm/dd/yyyy, display nothing
-        taskItemDueDate.readOnly = "true";
+        if (task.dueDate) {
+            taskItemDueDate.value = task.dueDate;
+        } else {
+            taskItemDueDate.style.display = "none";
+        }
+        taskItemDueDate.style.display = "none";
+
+        const dueDateDisplay = document.createElement("span");
+        dueDateDisplay.classList.add("dueDateDisplay");
+        if (task.dueDate) {
+            dueDateDisplay.textContent = task.dueDate;
+        } else {
+            dueDateDisplay.textContent = "";
+        }
         
-        taskItemSelectionBox.append(taskItemPriority, taskItemDueDate);
+        taskItemSelectionBox.append(taskItemPriority, taskItemDueDate, dueDateDisplay);
         taskItemInfo.append(taskItemTitle, taskItemDescription, taskItemSelectionBox);
 
 

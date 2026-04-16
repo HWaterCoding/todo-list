@@ -22,9 +22,6 @@ export default function createProjectForm(){
     // const projectTheme = document.createElement("");
     // projectTheme.id = "projectTheme";
     
-    // projectIcon = document.createElement("");
-    // projectIcon.id = "projectIcon";
-
     const projectBtnContainer = document.createElement("div");
     projectBtnContainer.id = "projectBtnContainer";
     
