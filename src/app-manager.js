@@ -65,6 +65,13 @@ export default class AppManager{
         }
     }
 
+    removeTaskFromProject(projectID, task){
+        const project = this.getProject(projectID);
+        if(project){
+            project.removeTask(task)
+            this.populateStorage();
+        }
+    }
     //add a removeTaskFromProject() function here
 
     toggleTaskCompletion(projectID, taskID){

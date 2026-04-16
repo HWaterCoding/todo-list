@@ -169,11 +169,9 @@ export default function initApp(manager){
         if(!isDeleteButton && !isEditButton && !isCancelEditBtn && !isSaveEditBtn && !isCompletedCheckbox) return;
         if(isDeleteButton){
             const task = event.target.closest(".taskItem");
-            const idToDelete = task.dataset.id;
-            const project = manager.getProject(currentProjectId);
-            project.removeTask(idToDelete)
+            const taskID = task.dataset.id;
+            manager.removeTaskFromProject(currentProjectId, taskID)
             renderCurrentProject();
-            //THIS DOES NOT AFFECT STORAGE RIGHT NOW. UPDATE WITH REMOVETASKFROMPROJECT() FUNCTION
         }
         if(isEditButton){
             const task = event.target.closest(".taskItem");

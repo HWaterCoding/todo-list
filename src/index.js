@@ -8,8 +8,6 @@ import Project from "./project.js";
 
 
 
-//write localStorage function here to check your storage object and retrieve them
-
 
 const manager = new AppManager();
 initApp(manager);
