@@ -195,11 +195,14 @@ export function renderProjectList(projects, defaultProjectID, currentProjectId, 
         const projectItem = document.createElement("div");
         projectItem.classList.add("projectItem");
         projectItem.dataset.id = project.id;
+        projectItem.title = project.name;
 
         const projectButton = document.createElement("button");
         projectButton.classList.add("projectButton");
-        projectButton.textContent = project.name;
         projectButton.dataset.id = project.id;
+        const nameSpan = document.createElement("span");
+        nameSpan.textContent = project.name;
+        projectButton.appendChild(nameSpan);
 
         if(currentView === "project" && project.id === currentProjectId){
             projectButton.classList.add("active");
@@ -211,9 +214,8 @@ export function renderProjectList(projects, defaultProjectID, currentProjectId, 
         removeIcon.classList.add("fa-solid", "fa-circle-xmark");
         removeProjectBtn.appendChild(removeIcon);
 
-        projectButton.appendChild(removeProjectBtn);
-
-        projectItem.append(projectButton, removeProjectBtn);
+        projectItem.append(projectButton);
+        projectButton.append(removeProjectBtn);
 
         projectList.appendChild(projectItem);
     });
