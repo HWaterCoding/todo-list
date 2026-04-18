@@ -1,13 +1,55 @@
 :root{
     --salmon-theme: rgb(255, 162, 151);
     --salmon-hover: rgb(231, 134, 124);
+
     --light-pink-theme: rgb(255, 230, 230);
     --light-pink-hover: rgb(245, 218, 218);
-    --grey-theme: rgb(209, 202, 202);
-    --grey-hover: rgb(179, 172, 172);
+
+    --add-buttons: rgb(15, 202, 15);
+    --add-buttons-hover: rgb(17, 167, 17);
+
+    --cancel-buttons: rgb(209, 202, 202);
+    --cancel-buttons-hover: rgb(179, 172, 172);
+
     --high-priority-theme:rgb(238, 183, 183);
     --medium-priority-theme: rgb(217, 217, 243);
     --low-priority-theme: rgb(176, 230, 176);
+
+    --text-color: black;
+    --background-color: #fff;
+    --active-project: rgb(245, 103, 103);
+    --completed-task: rgb(238, 233, 233);
+    --task-checkbox: #7c7474;
+    --overlay: rgba(167, 164, 164, 0.719);
+}
+
+.darkmode{
+    --salmon-theme:  rgb(41, 38, 38);
+    --salmon-hover: rgb(73, 73, 73);
+
+    --light-pink-theme: rgb(63, 60, 60);
+    --light-pink-hover: rgb(114, 111, 111);
+
+    --add-buttons: rgb(17, 167, 17);
+    --add-buttons-hover: rgb(15, 202, 15);
+
+    --cancel-buttons: rgb(134, 125, 125);
+    --cancel-buttons-hover: rgb(167, 162, 162);
+
+    --high-priority-theme:rgb(238, 183, 183);
+    --medium-priority-theme: rgb(217, 217, 243);
+    --low-priority-theme: rgb(176, 230, 176);
+    
+    --text-color: #fff;
+    --background-color: black;
+    --active-project: rgb(92, 82, 82);
+    --completed-task: rgb(177, 166, 166);
+    --task-checkbox: #ccc;
+    --overlay: rgba(97, 89, 89, 0.719);
+}
+
+span, h1, h2, h3, h4, h5, h6, p, label, input, i, form, button{
+    color: var(--text-color);
 }
 
 *, *::before, *::after {
@@ -50,6 +92,7 @@ body{
 }
 
 body {
+    background: var(--background-color);
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
     display: grid;
@@ -97,7 +140,6 @@ body {
     grid-column: 1/2;
     display: flex;
     flex-direction: column;
-    /* display: grid; */
     min-width: 0;
     overflow: hidden;
     height: 100%;
@@ -179,13 +221,12 @@ body {
     flex: 1;
 }
 
-.projectButton:hover,
-.projectButton.active:hover{
+.projectButton:hover{
     background: var(--salmon-hover);
 }
 
 .projectButton.active{
-    background-color: rgb(241, 207, 207);
+    background: var(--active-project);
 }
 
 .removeProjectBtn{
@@ -298,19 +339,19 @@ body {
 }
 
 .defaultAddProjectBtn{
-    background-color: rgb(15, 202, 15);
+    background: var(--add-buttons);
 }
 
 .defaultAddProjectBtn:hover{
-    background-color: rgb(17, 167, 17);
+    background: var(--add-buttons-hover);
 }
 
 .defaultAddTaskBtn{
-    background: var(--salmon-theme);
+    background-color: rgb(241, 83, 83);
 }
 
 .defaultAddTaskBtn:hover{
-    background: var(--salmon-hover);
+    background-color: rgb(209, 50, 50);
 }
 
 
@@ -357,20 +398,19 @@ body {
 }
 
 .submitFormBtn{
-    background: var(--salmon-theme);
+    background: var(--add-buttons);
 }
 
 .submitFormBtn:hover{
-    background: var(--salmon-hover);
+    background: var(--add-buttons-hover);
 }
 
 .cancelTaskBtn{
-    background: var(--grey-theme);
+    background: var(--cancel-buttons);
 }
 
-
 .cancelTaskBtn:hover{
-    background: var(--grey-hover);
+    background: var(--cancel-buttons-hover);
 }
 
 
@@ -400,7 +440,7 @@ body {
 }
 
 .taskItemCompleted{
-    background-color: rgb(238, 233, 233);;
+    background: var(--completed-task);
 }
 
 .taskItemCompleted .taskItemTitle{
@@ -412,7 +452,7 @@ body {
     width: 18px;
     height: 18px;
     border-radius: 50%;
-    border: 2px solid #ccc;
+    border: 2px solid var(--task-checkbox);
     display: inline-block;
     position: relative;
     cursor: pointer;
@@ -438,6 +478,7 @@ body {
 
 .taskItemInfo input{
     all: unset;
+    color: var(--text-color);
 }
 
 .taskItemSelectionBox{
@@ -481,26 +522,26 @@ body {
 }
 
 .cancelEditBtn{
-    background: var(--grey-theme);
+    background: var(--cancel-buttons);
 }
 
 .cancelEditBtn:hover{
-    background: var(--grey-hover);
+    background: var(--cancel-buttons-hover);
 }
 
 .saveEditBtn{
-    background: var(--salmon-theme);
+    background: var(--add-buttons);
 }
 
 .saveEditBtn:hover{
-    background-color: rgb(231, 134, 124);
+    background: var(--add-buttons-hover);
 }
 
 
 
 /* Create Project Form */
 #projectFormOverlay{
-    background-color: rgba(167, 164, 164, 0.719);
+    background: var(--overlay);
     position: absolute;
     display: flex;
     justify-content: center;
@@ -533,6 +574,27 @@ body {
     gap: 10px;
 }
 
+#projectBtnContainer button{
+    padding: 10px;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.submitProjectBtn{
+    background: var(--add-buttons);
+}
+
+.submitProjectBtn:hover{
+    background: var(--add-buttons-hover);
+}
+
+.cancelProjectBtn{
+    background: var(--cancel-buttons);
+}
+
+.cancelProjectBtn:hover{
+    background: var(--cancel-buttons-hover);
+}
 
 
 
@@ -606,3 +668,6 @@ select:hover{
 .taskItem.editing .taskItemPriority{
     display: inline-block;
 }
+
+
+/* Night Mode CSS */

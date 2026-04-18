@@ -172,7 +172,7 @@ function renderTaskList(taskArea, tasks, projects, defaultProjectID){
 
         const saveEditBtn = document.createElement("button");
         saveEditBtn.classList.add("saveEditBtn");
-        saveEditBtn.textContent = "Save";
+        saveEditBtn.textContent = "Save Changes";
             
         editTaskButtonContainer.append(editProjectSelector, cancelEditBtn, saveEditBtn);
 

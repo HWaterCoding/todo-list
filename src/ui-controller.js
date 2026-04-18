@@ -260,4 +260,9 @@ export default function initApp(manager){
         const tasks = project.sortTasks(currentSort);
         renderController(tasks, manager.allProjects, manager.defaultProjectID);
     })
+
+    const themeSwitcher = document.getElementById("themeSwitcher");
+    themeSwitcher.addEventListener("click", ()=>{
+        document.body.classList.toggle("darkmode");
+    });
 }

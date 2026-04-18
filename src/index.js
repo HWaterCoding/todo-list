@@ -30,10 +30,23 @@ manager.populateStorage();
 //add a night mode feature if you want
 //add a search option if you want
 
-//one last comb through of project to look for unfinished comments/code/bugs, etc
+//one last comb through of project to look for unfinished comments/code/bugs, etc\
 
-//there is one issue with the project names where if a project name is too long, it makes the button push the sidebar
-//and take up way more space than it should. The same thing happens with the project label, which then pushes over
-//the taskArea and completely destroys layout. We need to implement some sort of wrapping feature or character limit.
 
-//also make it so that the list of projects doesn't keep appending and push other content down
+//UPGRADES FOR THE FUTURE:::::
+
+//SEARCH BUTTON:
+//Create the search button so that when its pressed it turns into an input and the user can type right there
+//retrieve all tasks, and loop through them to check if any include the current string in the inputfield.
+//Make sure that you check both the title and description for matches to the search input field
+
+//NIGHT MODE:
+//change --root color values with a .darkmode class on click then re back when clicked again
+//add event listener to UI that adds that class to every element we want to change
+//Incorporate the second icon for the night-mode switch and show/hide it on click like stopwatch toggle btn
+
+
+//SETTINGS BUTTONS:
+//Create an info panel that shows the user how to operate the app in a basic way. 
+//Probably need to use pictures in this pop up and treat it like a modal 
+//Probably stuff this into its own module for easy implementation
