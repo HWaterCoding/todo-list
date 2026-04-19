@@ -671,3 +671,14 @@ select:hover{
 
 
 /* Night Mode CSS */
+#themeSwitcher .icon{
+    display: none;
+}
+
+#themeSwitcher.light .fa-moon{
+    display: inline;
+}
+
+#themeSwitcher.dark .fa-sun{
+    display: inline;
+}

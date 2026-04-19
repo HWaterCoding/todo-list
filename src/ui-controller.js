@@ -264,5 +264,7 @@ export default function initApp(manager){
     const themeSwitcher = document.getElementById("themeSwitcher");
     themeSwitcher.addEventListener("click", ()=>{
         document.body.classList.toggle("darkmode");
+        themeSwitcher.classList.toggle("dark");
+        themeSwitcher.classList.toggle("light");
     });
 }
