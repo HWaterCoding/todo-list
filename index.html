@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <script src="https://kit.fontawesome.com/00250d9010.js" crossorigin="anonymous"></script>
+<script defer src="main.js"></script></head>
+
+<body>
+    <header id="header">
+        <h1>Welcome to To-Due</h1>
+        <div id="header-options">
+            <button class="header-btn"><i class="fa-solid fa-bell" title="Notifications"></i></button>
+            <button class="header-btn"><i class="fa-solid fa-gear" title="Settings"></i></button>
+            <button class="header-btn light" id="themeSwitcher">
+                <i class="icon fa-solid fa-moon" title="Dark Mode"></i>
+                <i class="icon fa-solid fa-sun" title="Light Mode"></i>
+            </button>
+        </div>
+    </header>
+
+    <aside id="sidebar">
+        <div id="taskSection">
+            <button class="sidebar-btn" id="addTaskBtn" title="Add Task">
+                <i class="fa-solid fa-circle-plus"></i>
+                <span>Add task</span>
+            </button>
+            
+            <button class="sidebar-btn" id="inboxBtn" title="Inbox Project">
+                <i class="fa-solid fa-envelope"></i>
+                <span>Inbox</span>
+            </button>
+            
+            <button class="sidebar-btn" id="myTasksBtn" title="All Tasks">
+                <i class="fa-solid fa-list"></i>
+                <span>My Tasks</span>
+            </button>
+            
+            <button class="sidebar-btn" id="searchBtn" title="Search for a task">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <span>Search Tasks</span>
+            </button>
+            
+            <button class="sidebar-btn" id="completedBtn" title="Completed Tasks">
+                <i class="fa-solid fa-circle-check"></i>
+                <span>Completed</span>
+            </button>
+        </div>
+        
+        <div id="projectSection">
+            <div id="addProjects">
+                <h2>My Projects</h2>
+                <button class="sidebar-btn" id="addProjectBtn" title="Add A Project">
+                    <i class="fa-solid fa-circle-plus"></i>
+                </button>
+            </div>
+            <div id="projectList">
+
+            </div>
+        </div>
+        
+        <div id="serviceSection">
+            <button class="sidebar-btn" id="settingsBtn" title="Settings">
+                <i class="fa-solid fa-gear"></i> 
+                <span>Settings</span>
+            </button>
+            <button class="sidebar-btn" id="helpBtn" title="Info">
+                <i class="fa-solid fa-circle-question"></i> 
+                <span>Help</span>
+            </button>
+        </div>
+        
+    </aside>
+
+    <main id="main">
+        <h1 id="currentProjectLabel">Current project</h1> 
+        <div id="taskArea">
+            
+        </div>
+        <div id="sortOptions">
+            <select id="sortTasks">
+                <option value="orderCreated" selected>Order Created (default)</option>
+                <option value="alphabetical">Alphabetical (A-Z)</option>
+                <option value="reverseAlphabetical">Alphabetical (Z-A)</option>
+                <option value="dueSoon">Coming up soon!</option>
+                <option value="recentlyAdded">Recently Added</option>
+                <option value="highPriority">Priority (High-Low)</option>
+                <option value="lowPriority">Priority (Low-High)</option>
+            </select>
+        </div>
+    </main>
+
+</body>
+</html>
